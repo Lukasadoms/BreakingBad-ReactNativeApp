@@ -5,7 +5,7 @@ class PostsList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>PostsList Screen</Text>
+        <Text style={styles.text}>This is a test</Text>
       </View>
     );
   }
