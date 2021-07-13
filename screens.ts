@@ -2,7 +2,12 @@ import {Navigation} from 'react-native-navigation';
 
 export function registerScreens() {
   Navigation.registerComponent(
-    'blog.PostsList',
-    () => require('./src/posts/PostsList').default,
+    'CharacterList',
+    () => require('./src/screens/CharacterList').default,
+  );
+
+  Navigation.registerComponent(
+    'CharacterInfo',
+    () => require('./src/screens/CharacterInfo').default,
   );
 }

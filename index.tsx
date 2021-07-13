@@ -14,11 +14,11 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'blog.PostsList',
+              name: 'CharacterList',
               options: {
                 topBar: {
                   title: {
-                    text: 'BreakingBadApp',
+                    text: 'BreakingBad',
                   },
                 },
               },
