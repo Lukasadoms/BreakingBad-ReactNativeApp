@@ -1,0 +1,262 @@
+handleCpuAcceleration: feature check for hvf
+emulator: autoconfig: -skin 1080x1920
+emulator: autoconfig: -skindir (null)
+emulator: autoconfig: -kernel /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//kernel-ranchu
+emulator: Target arch = 'x86_64'
+emulator: Auto-detect: Kernel image requires new device naming scheme.
+emulator: Auto-detect: Kernel does not support YAFFS2 partitions.
+emulator: autoconfig: -ramdisk /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//ramdisk.img
+emulator: Using initial system image: /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//system.img
+emulator: Using initial vendor image: /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//vendor.img
+emulator: autoconfig: -data /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/userdata-qemu.img
+emulator: autoconfig: -initdata /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/userdata.img
+emulator: autoconfig: -cache /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/cache.img
+emulator: Increasing RAM size to 1536MB
+emulator: VM heap size 0MB is below hardware specified minimum of 384MB,setting it to that value
+emulator: System image is read only
+emulator: Found 1 DNS servers: 192.168.2.1
+emulator: found magic skin width=1080 height=1920 bpp=16
+
+emulator: Requested console port 18082: Inferring adb port 18083.
+emulator: CPU Acceleration: working
+emulator: CPU Acceleration status: Hypervisor.Framework OS X Version 11.4
+emulator: registered 'boot-properties' qemud service
+emulator: Adding boot property: 'qemu.cmdline' = 'androidboot.logcat=*:V androidboot.consolepipe=qemu_pipe,pipe:logcat'
+emulator: Adding boot property: 'qemu.logcat' = 'start'
+emulator: GPU emulation enabled using 'host' mode
+emulator: Initializing hardware OpenGLES emulation support
+emulator: VERBOSE: MultiDisplay.cpp:337: create display 0
+emulator: VERBOSE: MultiDisplay.cpp:431: setDisplayPose 0 x 0 y 0 w 1080 h 1920 dpi 0
+emulator: VERBOSE: load_config.cpp:242: Verified boot params were not found.
+emulator: Found 1 DNS servers: 192.168.2.1
+Content of hardware configuration file:
+  hw.cpu.arch = x86_64
+  hw.cpu.ncore = 2
+  hw.ramSize = 1536
+  hw.screen = multi-touch
+  hw.mainKeys = false
+  hw.trackBall = false
+  hw.keyboard = false
+  hw.keyboard.lid = false
+  hw.keyboard.charmap = qwerty2
+  hw.dPad = false
+  hw.rotaryInput = false
+  hw.gsmModem = true
+  hw.gps = true
+  hw.battery = true
+  hw.accelerometer = true
+  hw.gyroscope = true
+  hw.audioInput = true
+  hw.audioOutput = true
+  hw.sdCard = true
+  disk.cachePartition = true
+  disk.cachePartition.path = /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/cache.img
+  disk.cachePartition.size = 66m
+  test.quitAfterBootTimeOut = -1
+  test.delayAdbTillBootComplete = 0
+  test.monitorAdb = 0
+  hw.lcd.width = 1080
+  hw.lcd.height = 1920
+  hw.lcd.depth = 16
+  hw.lcd.density = 480
+  hw.lcd.backlight = true
+  hw.lcd.vsync = 60
+  hw.gltransport = pipe
+  hw.gltransport.asg.writeBufferSize = 1048576
+  hw.gltransport.asg.writeStepSize = 4096
+  hw.gltransport.asg.dataRingSize = 32768
+  hw.gltransport.drawFlushInterval = 800
+  hw.displayRegion.0.1.xOffset = -1
+  hw.displayRegion.0.1.yOffset = -1
+  hw.displayRegion.0.1.width = 0
+  hw.displayRegion.0.1.height = 0
+  hw.displayRegion.0.2.xOffset = -1
+  hw.displayRegion.0.2.yOffset = -1
+  hw.displayRegion.0.2.width = 0
+  hw.displayRegion.0.2.height = 0
+  hw.displayRegion.0.3.xOffset = -1
+  hw.displayRegion.0.3.yOffset = -1
+  hw.displayRegion.0.3.width = 0
+  hw.displayRegion.0.3.height = 0
+  hw.display1.width = 0
+  hw.display1.height = 0
+  hw.display1.density = 0
+  hw.display1.xOffset = -1
+  hw.display1.yOffset = -1
+  hw.display1.flag = 0
+  hw.display2.width = 0
+  hw.display2.height = 0
+  hw.display2.density = 0
+  hw.display2.xOffset = -1
+  hw.display2.yOffset = -1
+  hw.display2.flag = 0
+  hw.display3.width = 0
+  hw.display3.height = 0
+  hw.display3.density = 0
+  hw.display3.xOffset = -1
+  hw.display3.yOffset = -1
+  hw.display3.flag = 0
+  hw.gpu.enabled = true
+  hw.gpu.mode = host
+  hw.initialOrientation = portrait
+  hw.camera.back = emulated
+  hw.camera.frontcannot add library /Users/lukasa/Library/Android/sdk/emulator/qemu/darwin-x86_64/lib64/vulkan/libvulkan.dylib: failed
+ = none
+  vm.heapSize = 384
+  hw.sensors.light = true
+  hw.sensors.pressure = true
+  hw.sensors.humidity = true
+  hw.sensors.proximity = true
+  hw.sensors.magnetic_field = true
+  hw.sensors.magnetic_field_uncalibrated = true
+  hw.sensors.gyroscope_uncalibrated = true
+  hw.sensors.orientation = true
+  hw.sensors.temperature = true
+  hw.sensor.hinge = true
+  hw.sensor.hinge.count = 0
+  hw.sensor.hinge.type = 0
+  hw.sensor.hinge.sub_type = 0
+  hw.sensor.hinge.fold_to_displayRegion.0.1_at_posture = 1
+  hw.sensor.roll = false
+  hw.sensor.roll.count = 0
+  hw.sensor.roll.resize_to_displayRegion.0.1_at_posture = 6
+  hw.sensor.roll.resize_to_displayRegion.0.2_at_posture = 6
+  hw.sensor.roll.resize_to_displayRegion.0.3_at_posture = 6
+  hw.sensors.heart_rate = false
+  hw.useext4 = true
+  hw.arc = false
+  hw.arc.autologin = false
+  kernel.path = /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//kernel-ranchu
+  kernel.newDeviceNaming = yes
+  kernel.supportsYaffs2 = no
+  disk.ramdisk.path = /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//ramdisk.img
+  disk.systemPartition.initPath = /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//system.img
+  disk.systemPartition.size = 2562m
+  disk.vendorPartition.initPath = /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//vendor.img
+  disk.vendorPartition.size = 800m
+  disk.dataPartition.path = /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/userdata-qemu.img
+  disk.dataPartition.size = 800m
+  disk.encryptionKeyPartition.path = /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/encryptionkey.img
+  PlayStore.enabled = false
+  avd.name = Pixel_API_28_AOSP
+  avd.id = Pixel_API_28_AOSP
+  fastboot.forceColdBoot = false
+  android.sdk.root = /Users/lukasa/Library/Android/sdk
+  android.avd.home = /Users/lukasa/.android/avd
+.
+QEMU options list:
+emulator: argv[00] = "/Users/lukasa/Library/Android/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64"
+emulator: argv[01] = "-dns-server"
+emulator: argv[02] = "192.168.2.1"
+emulator: argv[03] = "-no-audio"
+emulator: argv[04] = "-mem-path"
+emulator: argv[05] = "/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/snapshots/default_boot/ram.img"
+emulator: argv[06] = "-mem-file-shared"
+emulator: argv[07] = "-serial"
+emulator: argv[08] = "null"
+emulator: argv[09] = "-android-ports"
+emulator: argv[10] = "18082,18083"
+emulator: argv[11] = "-device"
+emulator: argv[12] = "goldfish_pstore,addr=0xff018000,size=0x10000,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/data/misc/pstore/pstore.bin"
+emulator: argv[13] = "-cpu"
+emulator: argv[14] = "android64"
+emulator: argv[15] = "-enable-hvf"
+emulator: argv[16] = "-smp"
+emulator: argv[17] = "cores=2"
+emulator: argv[18] = "-m"
+emulator: argv[19] = "1536"
+emulator: argv[20] = "-lcd-density"
+emulator: argv[21] = "480"
+emulator: argv[22] = "-nodefaults"
+emulator: argv[23] = "-kernel"
+emulator: argv[24] = "/Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//kernel-ranchu"
+emulator: argv[25] = "-initrd"
+emulator: argv[26] = "/Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//ramdisk.img"
+emulator: argv[27] = "-drive"
+emulator: argv[28] = "if=none,index=0,id=system,if=none,file=/Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//system.img,read-only"
+emulator: argv[29] = "-device"
+emulator: argv[30] = "virtio-blk-pci,drive=system,modern-pio-notify"
+emulator: argv[31] = "-drive"
+emulator: argv[32] = "if=none,index=1,id=cache,if=none,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/cache.img.qcow2,overlap-check=none,cache=unsafe,l2-cache-size=1048576"
+emulator: argv[33] = "-device"
+emulator: argv[34] = "virtio-blk-pci,drive=cache,modern-pio-notify"
+emulator: argv[35] = "-drive"
+emulator: argv[36] = "if=none,index=2,id=userdata,if=none,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/userdata-qemu.img.qcow2,overlap-check=none,cache=unsafe,l2-cache-size=1048576"
+emulator: argv[37] = "-device"
+emulator: argv[38] = "virtio-blk-pci,drive=userdata,modern-pio-notify"
+emulator: argv[39] = "-drive"
+emulator: argv[40] = "if=none,index=3,id=encrypt,if=none,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/encryptionkey.img.qcow2,overlap-check=none,cache=unsafe,l2-cache-size=1048576"
+emulator: argv[41] = "-device"
+emulator: argv[42] = "virtio-blk-pci,drive=encrypt,modern-pio-notify"
+emulator: argv[43] = "-drive"
+emulator: argv[44] = "if=none,index=4,id=vendor,if=none,file=/Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//vendor.img,read-only"
+emulator: argv[45] = "-device"
+emulator: argv[46] = "virtio-blk-pci,drive=vendor,modern-pio-notify"
+emulator: argv[47] = "-netdev"
+emulator: argv[48] = "user,id=mynet"
+emulator: argv[49] = "-device"
+emulator: argv[50] = "virtio-net-pci,netdev=mynet"
+emulator: argv[51] = "-device"
+emulator: argv[52] = "virtio-rng-pci"
+emulator: argv[53] = "-show-cursor"
+emulator: argv[54] = "-L"
+emulator: argv[55] = "/Users/lukasa/Library/Android/sdk/emulator/lib/pc-bios"
+emulator: argv[56] = "-soundhw"
+emulator: argv[57] = "hda"
+emulator: argv[58] = "-vga"
+emulator: argv[59] = "none"
+emulator: argv[60] = "-append"
+emulator: argv[61] = "no_timer_check clocksource=pit no-kvmclock console=0 cma=288M@0-4G mac80211_hwsim.radios=2 mac80211_hwsim.channels=2 skip_initramfs rootwait ro init=/init root=/dev/vda1 loop.max_part=7 ramoops.mem_address=0xff018000 ramoops.mem_size=0x10000 memmap=0x10000$0xff018000 printk.devkmsg=on qemu=1 androidboot.hardware=ranchu androidboot.serialno=EMULATOR30X7X5X0 android.checkjni=1 android.bootanim=0 qemu.gles=1 qemu.settings.system.screen_off_timeout=2147483647 qemu.encrypt=1 qemu.vsync=60 qemu.gltransport=pipe qemu.gltransport.drawFlushInterval=800 qemu.opengles.version=196608 qemu.uirenderer=skiagl qemu.dalvik.vm.heapsize=384m androidboot.android_dt_dir=/sys/bus/platform/devices/ANDR0001:00/properties/android/ qemu.wifi=1 android.qemud=1"
+emulator: argv[62] = "-android-hw"
+emulator: argv[63] = "/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/hardware-qemu.ini"
+Concatenated QEMU options:
+ /Users/lukasa/Library/Android/sdk/emulator/qemu/darwin-x86_64/qemu-system-x86_64 -dns-server 192.168.2.1 -no-audio -mem-path /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/snapshots/default_boot/ram.img -mem-file-shared -serial null -android-ports 18082,18083 -device goldfish_pstore,addr=0xff018000,size=0x10000,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/data/misc/pstore/pstore.bin -cpu android64 -enable-hvf -smp cores=2 -m 1536 -lcd-density 480 -nodefaults -kernel /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//kernel-ranchu -initrd /Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//ramdisk.img -drive if=none,index=0,id=system,if=none,file=/Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//system.img,read-only -device virtio-blk-pci,drive=system,modern-pio-notify -drive if=none,index=1,id=cache,if=none,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/cache.img.qcow2,overlap-check=none,cache=unsafe,l2-cache-size=1048576 -device virtio-blk-pci,drive=cache,modern-pio-notify -drive if=none,index=2,id=userdata,if=none,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/userdata-qemu.img.qcow2,overlap-check=none,cache=unsafe,l2-cache-size=1048576 -device virtio-blk-pci,drive=userdata,modern-pio-notify -drive if=none,index=3,id=encrypt,if=none,file=/Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/encryptionkey.img.qcow2,overlap-check=none,cache=unsafe,l2-cache-size=1048576 -device virtio-blk-pci,drive=encrypt,modern-pio-notify -drive if=none,index=4,id=vendor,if=none,file=/Users/lukasa/Library/Android/sdk/system-images/android-28/default/x86_64//vendor.img,read-only -device virtio-blk-pci,drive=vendor,modern-pio-notify -netdev user,id=mynet -device virtio-net-pci,netdev=mynet -device virtio-rng-pci -show-cursor -L /Users/lukasa/Library/Android/sdk/emulator/lib/pc-bios -soundhw hda -vga none -append 'no_timer_check clocksource=pit no-kvmclock console=0 cma=288M@0-4G mac80211_hwsim.radios=2 mac80211_hwsim.channels=2 skip_initramfs rootwaitadded library /Users/lukasa/Library/Android/sdk/emulator/lib64/vulkan/libvulkan.dylib
+cannot add library /Users/lukasa/Library/Android/sdk/emulator/qemu/darwin-x86_64/lib64/vulkan/libMoltenVK.dylib: failed
+ ro init=/init root=/dev/vda1 loop.max_part=7 ramoops.mem_address=0xff018000 ramoops.mem_size=0x10000 memmap=0x10000$0xff018000 printk.devkmsg=on qemu=1 androidboot.hardware=ranchu androidboot.serialno=EMULATOR30X7X5X0 android.checkjni=1 android.bootanim=0 qemu.gles=1 qemu.settings.system.screen_off_timeout=2147483647 qemu.encrypt=1 qemu.vsync=60 qemu.gltransport=pipe qemu.gltransport.drawFlushInterval=800 qemu.opengles.version=196608 qemu.uirenderer=skiagl qemu.dalvik.vm.heapsize=384m androidboot.android_dt_dir=/sys/bus/platform/devices/ANDR0001:00/properties/android/ qemu.wifi=1 android.qemud=1' -android-hw /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/hardware-qemu.ini
+emulator: Android qemu version 30.7.5.0 (build_id 7491168) (CL:N/A)
+
+emulator: Starting QEMU main loop
+emulator: Adding boot property: 'ro.opengles.version' = '196608'
+emulator: Adding boot property: 'qemu.sf.fake_camera' = 'back'
+emulator: Adding boot property: 'dalvik.vm.heapsize' = '384m'
+emulator: Adding boot property: 'qemu.hw.mainkeys' = '0'
+emulator: Adding boot property: 'qemu.sf.lcd_density' = '480'
+emulator: goldfish_events.have-dpad: false
+emulator: goldfish_events.have-trackball: false
+emulator: goldfish_events.have-camera: true
+emulator: goldfish_events.have-keyboard: false
+emulator: goldfish_events.have-lidswitch: false
+emulator: goldfish_events.have-tabletmode: false
+emulator: goldfish_events.have-touch: false
+emulator: goldfish_events.have-multitouch: true
+added library /Users/lukasa/Library/Android/sdk/emulator/lib64/vulkan/libMoltenVK.dylib
+emulator: WARNING: Requested adb port (18083) is outside the recommended range [5555,5586]. ADB may not function properly for the emulator. See -help-port for details.
+Not using any http proxy
+emulator: Adding boot property: 'qemu.timezone' = 'Europe/Vilnius'
+emulator: android_hw_fingerprint_init: fingerprint qemud listen service initialized
+
+emulator: emulator_window_fb_rotate
+
+emulator: No acpi ini file provided, using default
+
+emulator: Adding boot property: 'qemu.cmdline' = 'androidboot.logcat=*:V androidboot.consolepipe=qemu_pipe,pipe:logcat'
+emulator: Adding boot property: 'qemu.logcat' = 'start'
+emulator: Adding boot property: 'ro.opengles.version' = '196608'
+emulator: Adding boot property: 'qemu.sf.fake_camera' = 'back'
+emulator: Adding boot property: 'dalvik.vm.heapsize' = '384m'
+emulator: Adding boot property: 'qemu.hw.mainkeys' = '0'
+emulator: Adding boot property: 'qemu.sf.lcd_density' = '480'
+emulator: Adding boot property: 'qemu.timezone' = 'Europe/Vilnius'
+emulator: VERBOSE: AdbInterface.cpp:367: Path:/Users/lukasa/Library/Android/sdk/platform-tools/adb protocol version: 41
+emulator: VERBOSE: AdbInterface.cpp:367: Path:/Users/lukasa/Library/Android/sdk/platform-tools/adb protocol version: 41
+emulator: VERBOSE: AdbInterface.cpp:409: Found: 2 adb executables
+emulator: VERBOSE: AdbInterface.cpp:411: Adb: /Users/lukasa/Library/Android/sdk/platform-tools/adb
+emulator: VERBOSE: AdbInterface.cpp:411: Adb: /Users/lukasa/Library/Android/sdk/platform-tools/adb
+emulator: VERBOSE: AdbInterface.cpp:367: Path:/Users/lukasa/Library/Android/sdk/platform-tools/adb protocol version: 41
+emulator: VERBOSE: AdbInterface.cpp:367: Path:/Users/lukasa/Library/Android/sdk/platform-tools/adb protocol version: 41
+emulator: _hwFingerprint_connect: connect finger print listen is called
+
+emulator: Saving state on exit with session uptime 879773 ms
+emulator: Done with QEMU main loop
+emulator: User configuration saved to /Users/lukasa/.android/avd/Pixel_API_28_AOSP.avd/emulator-user.ini
+emulator: VERBOSE: AdbConnection.cpp:490: Adb transition disconnected -> disconnected
