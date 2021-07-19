@@ -23,7 +23,7 @@ const CharacterList = (props: any) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text} onPress={pushViewCharacterScreen}>
+      <Text style={styles.text} onPress={pushViewCharacterScreen} testID="character-list">
         Character List
       </Text>
     </View>

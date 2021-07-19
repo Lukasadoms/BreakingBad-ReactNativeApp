@@ -4,7 +4,9 @@ import {View, Text, StyleSheet} from 'react-native';
 const CharacterInfo = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Character Info</Text>
+      <Text style={styles.text} testID="character-info">
+        Character Info
+      </Text>
     </View>
   );
 };
