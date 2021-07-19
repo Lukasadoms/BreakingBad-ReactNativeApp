@@ -1,0 +1,4 @@
+export const screenIDs = {
+  CHARACTER_LIST: 'CHARACTER_LIST',
+  CHARACTER_INFO: 'CHARACTER_INFO',
+};

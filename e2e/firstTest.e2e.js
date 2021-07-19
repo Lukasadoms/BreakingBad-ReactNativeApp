@@ -1,4 +1,5 @@
 import {device} from "detox"
+import {testIDs} from "../src/test-ids";
 
 describe('Example', () => {
   beforeAll(async () => {
@@ -11,12 +12,12 @@ describe('Example', () => {
   });
 
   it('should have character list', async () => {
-    await expect(element(by.id('character-list'))).toBeVisible();
+    await expect(element(by.id(testIDs.CHARACTER_LIST))).toBeVisible();
   });
 
   it('should show character info screen after tapping character list', async () => {
-    await element(by.id('character-list')).tap();
-    await expect(element(by.id('character-info'))).toBeVisible();
+    await element(by.id(testIDs.CHARACTER_LIST)).tap();
+    await expect(element(by.id(testIDs.BUTTON_TITLE))).toBeVisible();
   });
   //
   // it('should show world screen after tap', async () => {

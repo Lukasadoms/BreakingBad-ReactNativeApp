@@ -11,7 +11,9 @@
     "start-e2e": "RN_SRC_EXT=e2e.js react-native start"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.14.7",
     "react": "17.0.1",
+    "react-component-driver": "^0.11.0",
     "react-native": "0.64.1",
     "react-native-navigation": "^7.18.0"
   },

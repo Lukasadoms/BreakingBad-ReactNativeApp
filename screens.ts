@@ -1,13 +1,14 @@
 import {Navigation} from 'react-native-navigation';
+import {screenIDs} from './src/screen-ids';
 
 export function registerScreens() {
   Navigation.registerComponent(
-    'CharacterList',
-    () => require('./src/screens/CharacterList').default,
+    screenIDs.CHARACTER_LIST,
+    () => require('./src/screens/characterList').characterList,
   );
 
   Navigation.registerComponent(
-    'CharacterInfo',
-    () => require('./src/screens/CharacterInfo').default,
+    screenIDs.CHARACTER_INFO,
+    () => require('./src/screens/characterInfo').characterInfo,
   );
 }
