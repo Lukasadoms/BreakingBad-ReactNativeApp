@@ -25,5 +25,5 @@ async function fetchCharacters() {
 
 module.exports = {
   reset,
-    fetchCharacters,
+  fetchCharacters,
 };
