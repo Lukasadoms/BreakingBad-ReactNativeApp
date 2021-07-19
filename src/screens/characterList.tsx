@@ -2,8 +2,13 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {screenIDs} from '../screen-ids';
+import {testIDs} from "../test-ids";
 
-export const characterList = (props: any) => {
+interface characterListProps {
+  componentId: string;
+}
+
+export const characterList = (props: characterListProps) => {
   const pushViewCharacterScreen = () => {
     Navigation.push(props.componentId, {
       component: {
@@ -24,7 +29,10 @@ export const characterList = (props: any) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text} onPress={pushViewCharacterScreen} testID="character-list">
+      <Text
+        style={styles.text}
+        onPress={pushViewCharacterScreen}
+        testID={testIDs.CHARACTER_LIST}>
         Character List
       </Text>
     </View>
