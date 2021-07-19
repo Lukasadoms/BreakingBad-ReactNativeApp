@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, Alert} from 'react-native';
+import {View, StyleSheet, Button, Alert, Text} from 'react-native';
+import {testIDs} from '../test-ids';
 
 export const showAlert = () => {
   Alert.alert('Alert Title', 'This is a test', [
@@ -13,13 +14,16 @@ export const showAlert = () => {
   return 5;
 };
 
-export const CharacterInfo = () => {
+export const characterInfo = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text} testID="character-info">
-        Character Info
-      </Text>
-      <Button color="#f194ff" title={'Alert'} onPress={showAlert} />
+      <Text>Character Info</Text>
+      <Button
+        color="#f194ff"
+        title={'Character Info'}
+        onPress={showAlert}
+        testID={testIDs.BUTTON_TITLE}
+      />
     </View>
   );
 };

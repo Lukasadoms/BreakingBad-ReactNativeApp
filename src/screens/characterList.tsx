@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Navigation} from 'react-native-navigation';
+import {screenIDs} from '../screen-ids';
 
-const CharacterList = (props: any) => {
+export const characterList = (props: any) => {
   const pushViewCharacterScreen = () => {
     Navigation.push(props.componentId, {
       component: {
-        name: 'CharacterInfo',
+        name: screenIDs.CHARACTER_INFO,
         passProps: {
           somePropToPass: 'Some props that we are passing',
         },
@@ -29,8 +30,6 @@ const CharacterList = (props: any) => {
     </View>
   );
 };
-
-export default CharacterList;
 
 const styles = StyleSheet.create({
   container: {

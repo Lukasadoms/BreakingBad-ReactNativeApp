@@ -4,6 +4,7 @@
 
 import {Navigation} from 'react-native-navigation';
 import {registerScreens} from './screens';
+import {screenIDs} from './src/screen-ids';
 
 registerScreens();
 
@@ -14,7 +15,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'CharacterList',
+              name: screenIDs.CHARACTER_LIST,
               options: {
                 topBar: {
                   title: {
