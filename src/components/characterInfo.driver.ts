@@ -1,10 +1,11 @@
 import {CharacterInfo} from './characterInfo';
 import {testIDs} from '../test-ids';
 import {componentDriver} from 'react-component-driver';
+import {withProvider} from '../screens';
 
 export const characterInfoDriver = () =>
-  componentDriver(CharacterInfo, {
-    getButton() {
-      return this.getByID(testIDs.BUTTON_TITLE);
+  componentDriver(withProvider(CharacterInfo), {
+    getCharacterTitle() {
+      return this.getByID(testIDs.CHARACTER_TITLE);
     },
   });

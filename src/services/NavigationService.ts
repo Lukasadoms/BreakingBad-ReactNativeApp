@@ -2,17 +2,22 @@ import {Navigation} from 'react-native-navigation';
 
 export const navigationService = {
   navigateTo(componentId: string, screenName: string, characterID: string) {
-    console.log(screenName, componentId, characterID);
     Navigation.push(componentId, {
       component: {
         name: screenName,
         passProps: {
-          somePropToPass: characterID,
+          characterID: characterID,
         },
         options: {
           topBar: {
+            backButton: {
+              color: 'black',
+            },
             title: {
-              text: 'Character1',
+              text: 'Character Info',
+            },
+            background: {
+              color: '#ffebaa',
             },
           },
         },

@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.14.7",
-
     "react-native": "0.64.1",
     "react-native-navigation": "^7.18.0",
     "react-redux": "^7.2.4",
@@ -48,6 +47,7 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "transformIgnorePatterns": ["node_modules/?!(react-native)"]
   }
 }

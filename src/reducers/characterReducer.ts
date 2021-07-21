@@ -7,6 +7,7 @@ export type Character = {
   birthday: string;
   status: string;
   nickname: string;
+  portrayed: string;
 };
 
 export interface CharacterState {

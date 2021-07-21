@@ -21,6 +21,9 @@ Navigation.events().registerAppLaunchedListener(() => {
                   title: {
                     text: 'BreakingBad',
                   },
+                  background: {
+                    color: '#ffebaa',
+                  },
                 },
               },
             },
