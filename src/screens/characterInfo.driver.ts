@@ -1,11 +1,10 @@
-import {characterInfo} from './characterInfo';
+import {CharacterInfo} from './characterInfo';
 import {testIDs} from '../test-ids';
-import {componentDriver, getTextNodes} from 'react-component-driver';
+import {componentDriver} from 'react-component-driver';
 
 export const characterInfoDriver = () =>
-  componentDriver(characterInfo, {
-    getButtonTitle() {
-      const node = this.filterByID(testIDs.BUTTON_TITLE);
-      return getTextNodes(node).join('');
+  componentDriver(CharacterInfo, {
+    getButton() {
+      return this.getByID(testIDs.BUTTON_TITLE);
     },
   });

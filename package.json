@@ -12,10 +12,11 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.14.7",
-    "react": "17.0.1",
-    "react-component-driver": "^0.11.0",
+
     "react-native": "0.64.1",
-    "react-native-navigation": "^7.18.0"
+    "react-native-navigation": "^7.18.0",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -30,6 +31,8 @@
     "jest": "^26.6.3",
     "jest-circus": "^27.0.6",
     "metro-react-native-babel-preset": "^0.64.0",
+    "react": "17.0.1",
+    "react-component-driver": "^0.11.0",
     "react-test-renderer": "17.0.1",
     "typescript": "^3.8.3"
   },

@@ -5,10 +5,15 @@
 import {showAlert} from './characterInfo';
 import {characterInfoDriver} from './characterInfo.driver';
 
-it('should return 5', () => {
-  expect(showAlert()).toEqual(5);
-});
+describe('CharacterInfoScreen', () => {
+  it('show alert function should show Alert', () => {
+    const {Alert} = require('react-native');
+    jest.spyOn(Alert, 'alert');
+    showAlert();
+    expect(Alert.alert).toHaveBeenCalled();
+  });
 
-it('should have button with title Alert', () => {
-  expect(characterInfoDriver().getButtonTitle()).toEqual('Character Info');
+  it('should have button with a title of "Alert"', () => {
+    expect(characterInfoDriver().getButton()).toBeDefined();
+  });
 });

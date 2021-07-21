@@ -14,13 +14,13 @@ export const showAlert = () => {
   return 5;
 };
 
-export const characterInfo = () => {
+export const CharacterInfo = () => {
   return (
     <View style={styles.container}>
       <Text>Character Info</Text>
       <Button
         color="#f194ff"
-        title={'Character Info'}
+        title={'Alert'}
         onPress={showAlert}
         testID={testIDs.BUTTON_TITLE}
       />
