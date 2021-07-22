@@ -5,7 +5,9 @@
 import {characterInfoDriver} from './characterInfo.driver';
 
 describe('CharacterInfoScreen', () => {
-  it('character title should be defined', () => {
-    expect(characterInfoDriver().getCharacterTitle()).toBeDefined();
+  it('should have a character title', () => {
+    expect(
+      characterInfoDriver().setProps({characterID: '1'}).getCharacterTitle(),
+    ).toBeDefined();
   });
 });

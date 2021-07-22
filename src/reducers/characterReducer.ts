@@ -15,7 +15,17 @@ export interface CharacterState {
 }
 
 const initialState = {
-  characterList: [],
+  characterList: [
+    // {
+    //   char_id: '1',
+    //   name: 'Walter White',
+    //   img: 'img',
+    //   birthday: '1964-02-21',
+    //   status: 'unknown',
+    //   nickname: 'Heisenberg',
+    //   portrayed: 'asas',
+    // },
+  ],
 };
 
 interface LoadCharacterAction {

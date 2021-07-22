@@ -15,9 +15,12 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // dispatch(isloading true)
     api
       .fetchChactacters()
       .then(data => dispatch({type: LOAD_ITEMS, payload: data}));
+
+    //.then(() => dispatch(isloading false)
   }, [dispatch]);
 
   const characters = useSelector<CharacterState, Character[]>(state =>

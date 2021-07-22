@@ -56,6 +56,7 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
         <Image
           style={styles.image}
           source={{uri: characterListRenderItemInfo.item.img}}
+          testID={testIDs.CHARACTER_IMAGE}
         />
         <Text style={styles.name}>{characterListRenderItemInfo.item.name}</Text>
       </TouchableOpacity>
