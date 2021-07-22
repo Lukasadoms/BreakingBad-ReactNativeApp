@@ -1,6 +1,6 @@
 import {LOAD_ITEMS} from '../actions/types';
 
-export type Character = {
+export interface Character {
   char_id: string;
   name: string;
   img: string;
@@ -8,24 +8,14 @@ export type Character = {
   status: string;
   nickname: string;
   portrayed: string;
-};
+}
 
 export interface CharacterState {
   characterList: Character[];
 }
 
 const initialState = {
-  characterList: [
-    // {
-    //   char_id: '1',
-    //   name: 'Walter White',
-    //   img: 'img',
-    //   birthday: '1964-02-21',
-    //   status: 'unknown',
-    //   nickname: 'Heisenberg',
-    //   portrayed: 'asas',
-    // },
-  ],
+  characterList: [],
 };
 
 interface LoadCharacterAction {

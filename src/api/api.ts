@@ -1,7 +1,13 @@
 export const api = {
-  fetchChactacters: async () => {
+  fetchAllChactacters: async () => {
     const result = await fetch('https://www.breakingbadapi.com/api/characters');
-    const data = await result.json();
-    return data;
+    return await result.json();
+  },
+
+  fetchCharacter: async (characterID: string) => {
+    const result = await fetch(
+      `https://www.breakingbadapi.com/api/characters/${characterID}`,
+    );
+    return await result.json();
   },
 };

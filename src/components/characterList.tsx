@@ -12,7 +12,7 @@ import {screenIDs} from '../screen-ids';
 import {api} from '../api/api';
 import {useDispatch, useSelector} from 'react-redux';
 import {LOAD_ITEMS} from '../actions/types';
-import {Character, CharacterState} from '../reducers/characterReducer';
+import {Character} from '../reducers/characterReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
 
@@ -34,19 +34,20 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
 
   const dispatch = useDispatch();
 
-  const characters = useSelector<CharacterState, Character[]>(
-    state => state.characterList,
-  );
+  const characters = useSelector(state => state.characterReducer.characterList);
 
   useEffect(() => {
     api
-      .fetchChactacters()
+      .fetchAllChactacters()
       .then(data => dispatch({type: LOAD_ITEMS, payload: data}));
-  }, [dispatch]);
+  }, []);
+
+  console.log(characters);
 
   const renderItem = (
     characterListRenderItemInfo: ListRenderItemInfo<Character>,
   ) => {
+    console.log(characterListRenderItemInfo.item.char_id);
     return (
       <TouchableOpacity
         style={styles.listItem}
@@ -56,9 +57,10 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
         <Image
           style={styles.image}
           source={{uri: characterListRenderItemInfo.item.img}}
-          testID={testIDs.CHARACTER_IMAGE}
         />
-        <Text style={styles.name}>{characterListRenderItemInfo.item.name}</Text>
+        <Text style={styles.name} testID={testIDs.CHARACTER_NAME}>
+          {characterListRenderItemInfo.item.name}
+        </Text>
       </TouchableOpacity>
     );
   };

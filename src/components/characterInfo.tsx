@@ -1,46 +1,63 @@
-import React, {useEffect} from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, Text, Image, ActivityIndicator} from 'react-native';
 import {testIDs} from '../test-ids';
-import {useDispatch, useSelector} from 'react-redux';
-import {Character, CharacterState} from '../reducers/characterReducer';
 import {api} from '../api/api';
-import {LOAD_ITEMS} from '../actions/types';
+import {useDispatch, useSelector} from 'react-redux';
+import {IS_LOADING} from '../actions/types';
+import {Character} from '../reducers/characterReducer';
 
 export interface CharacterInfoProps {
-  componentID: string;
+  componentId: string;
   characterID: string;
 }
 
 export const CharacterInfo = (props: CharacterInfoProps) => {
+  const [character, setCharacter] = useState<Character>({});
+
   const dispatch = useDispatch();
-
   useEffect(() => {
-    // dispatch(isloading true)
+    dispatch({type: IS_LOADING, payload: true});
     api
-      .fetchChactacters()
-      .then(data => dispatch({type: LOAD_ITEMS, payload: data}));
+      .fetchCharacter(props.characterID)
+      .then(data => setCharacter(data[0]))
+      .then(() => dispatch({type: IS_LOADING, payload: false}));
+  }, [props.characterID]);
+  console.log(character);
+  const loading = useSelector(state => state.loadingReducer.loading);
 
-    //.then(() => dispatch(isloading false)
-  }, [dispatch]);
-
-  const characters = useSelector<CharacterState, Character[]>(state =>
-    state.characterList.filter(char => char.char_id === props.characterID),
-  );
-
-  const character = characters[0];
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text} testID={testIDs.CHARACTER_TITLE}>
-        {character.name}
-      </Text>
-      <Image style={styles.image} source={{uri: character.img}} />
-      <Text style={styles.text}>Status: {character.status}</Text>
-      <Text style={styles.text}>Nickname: {character.nickname}</Text>
-      <Text style={styles.text}>Birthday: {character.birthday}</Text>
-      <Text style={styles.text}>Actor: {character.portrayed}</Text>
-    </View>
-  );
+  if (!loading) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text} testID={testIDs.CHARACTER_TITLE}>
+          {character.name}
+        </Text>
+        <Image style={styles.image} source={{uri: character.img}} />
+        <Text style={styles.text}>Status: {character.status}</Text>
+        <Text style={styles.text}>Nickname: {character.nickname}</Text>
+        <Text style={styles.text}>Birthday: {character.birthday}</Text>
+        <Text style={styles.text}>Actor: {character.portrayed}</Text>
+      </View>
+    );
+  } else {
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#AAAAAF',
+        }}>
+        <View
+          style={{
+            padding: 13,
+            borderRadius: 13,
+          }}>
+          <ActivityIndicator animating={true} color={'black'} size="large" />
+          <Text style={{color: 'black'}}>Loading...</Text>
+        </View>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
