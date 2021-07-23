@@ -10,12 +10,10 @@ import {
 } from 'react-native';
 import {screenIDs} from '../screen-ids';
 import {api} from '../api/api';
-import {useDispatch, useSelector} from 'react-redux';
 import {LOAD_ITEMS} from '../actions/types';
 import {Character} from '../reducers/characterReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
-import {RootState} from '../store';
 import {useAppDispatch, useAppSelector} from '../hooks/hooks';
 
 export interface CharacterListProps {

@@ -40,7 +40,11 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
         <Text style={styles.text} testID={testIDs.CHARACTER_TITLE}>
           {character.name}
         </Text>
-        <Image style={styles.image} source={{uri: character.img}} />
+        <Image
+          style={styles.image}
+          source={{uri: character.img}}
+          testID={testIDs.CHARACTER_IMAGE}
+        />
         <Text style={styles.text}>Status: {character.status}</Text>
         <Text style={styles.text}>Nickname: {character.nickname}</Text>
         <Text style={styles.text}>Birthday: {character.birthday}</Text>

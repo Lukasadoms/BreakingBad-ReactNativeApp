@@ -14,13 +14,6 @@ export function withProvider<Props>(Component: React.ComponentType<Props>) {
   );
 }
 
-// const withProvider<Props> = (Component: React.ComponentType<Props>) => (props: Props) =>
-//   (
-//     <Provider store={store}>
-//       <Component {...props} />
-//     </Provider>
-//   );
-
 export function registerScreens() {
   Navigation.registerComponent(screenIDs.CHARACTER_LIST, () =>
     withProvider<CharacterListProps>(

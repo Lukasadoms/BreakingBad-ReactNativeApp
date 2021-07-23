@@ -6,10 +6,10 @@ import {store} from '../store';
 
 export const characterInfoDriver = () =>
   componentDriver(withStore(CharacterInfo, store), {
-    // withCharacter(characterInfo: Character) {
-    //   store.dispatch({type: '', characters: [characterInfo]});
-    // },
     getCharacterTitle() {
       return this.getByID(testIDs.CHARACTER_TITLE);
     },
-  });
+    getCharacterImage() {
+      return this.getByID(testIDs.CHARACTER_IMAGE);
+    },
+  }).renderAsync();
