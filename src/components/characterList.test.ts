@@ -1,5 +1,4 @@
 import {characterListDriver} from './characterList.driver';
-import {api} from '../api/api';
 
 describe('Character list screen', () => {
   it('should have a character list', async () => {

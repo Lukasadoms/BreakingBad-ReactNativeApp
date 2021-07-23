@@ -10,7 +10,6 @@ export const characterListDriver = () =>
       return this.getByID(testIDs.CHARACTER_LIST);
     },
     getCharacterName() {
-      console.log(JSON.stringify(this.getComponent()));
       return this.getByID(testIDs.CHARACTER_NAME);
     },
   }).renderAsync();

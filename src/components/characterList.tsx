@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import {screenIDs} from '../screen-ids';
 import {api} from '../api/api';
-import {LOAD_ITEMS} from '../actions/types';
-import {Character} from '../reducers/characterReducer';
+import {LOAD_CHARACTERS} from '../actions/types';
+import {Character} from '../reducers/charactersReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
 import {useAppDispatch, useAppSelector} from '../hooks/hooks';
@@ -41,7 +41,7 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
   useEffect(() => {
     api
       .fetchAllChactacters()
-      .then(data => dispatch({type: LOAD_ITEMS, payload: data}));
+      .then(data => dispatch({type: LOAD_CHARACTERS, payload: data}));
   }, [dispatch]);
 
   const renderItem = (

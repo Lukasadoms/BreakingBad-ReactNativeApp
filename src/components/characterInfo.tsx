@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet, Text, Image, ActivityIndicator} from 'react-native';
 import {testIDs} from '../test-ids';
 import {api} from '../api/api';
-import {IS_LOADING} from '../actions/types';
+import {IS_LOADING, LOAD_CHARACTER} from '../actions/types';
 import {useAppDispatch, useAppSelector} from '../hooks/hooks';
-import {Character} from '../reducers/characterReducer';
 
 export interface CharacterInfoProps {
   componentId: string;
@@ -12,29 +11,23 @@ export interface CharacterInfoProps {
 }
 
 export const CharacterInfo = (props: CharacterInfoProps) => {
-  const [character, setCharacter] = useState<Character>({
-    char_id: '',
-    name: '',
-    status: '',
-    img: '',
-    portrayed: '',
-    birthday: '',
-    nickname: '',
-  });
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch({type: IS_LOADING, payload: true});
     api
       .fetchCharacter(props.characterID)
-      .then(data => setCharacter(data[0]))
+      .then(data => dispatch({type: LOAD_CHARACTER, payload: data[0]}))
       .then(() => dispatch({type: IS_LOADING, payload: false}));
+    return function cleanup() {
+      dispatch({type: LOAD_CHARACTER, payload: undefined});
+    };
   }, [dispatch, props.characterID]);
 
+  const character = useAppSelector(state => state.characterReducer.character);
   const loading = useAppSelector(state => state.loadingReducer.loading);
 
-  if (!loading) {
+  if (character) {
     return (
       <View style={styles.container}>
         <Text style={styles.text} testID={testIDs.CHARACTER_TITLE}>
@@ -51,7 +44,8 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
         <Text style={styles.text}>Actor: {character.portrayed}</Text>
       </View>
     );
-  } else {
+  }
+  if (loading) {
     return (
       <View
         style={{
@@ -70,6 +64,8 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
         </View>
       </View>
     );
+  } else {
+    return null;
   }
 };
 

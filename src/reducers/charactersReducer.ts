@@ -1,4 +1,4 @@
-import {LOAD_ITEMS} from '../actions/types';
+import {LOAD_CHARACTER, LOAD_CHARACTERS} from '../actions/types';
 
 export interface Character {
   char_id: string;
@@ -12,26 +12,36 @@ export interface Character {
 
 export interface CharacterState {
   characterList: Character[];
+  character: Character | undefined;
 }
 
 const initialState = {
   characterList: [],
+  character: undefined,
 };
 
-interface LoadCharacterAction {
-  type: typeof LOAD_ITEMS;
+interface LoadCharactersAction {
+  type: typeof LOAD_CHARACTERS;
   payload: Character[];
 }
 
-type Action = LoadCharacterAction;
+interface LoadCharacterAction {
+  type: typeof LOAD_CHARACTER;
+  payload: Character | undefined;
+}
 
-export const characterReducer = (
+type Action = LoadCharactersAction | LoadCharacterAction;
+
+export const charactersReducer = (
   state: CharacterState = initialState,
   action: Action,
 ): CharacterState => {
   switch (action.type) {
-    case LOAD_ITEMS: {
+    case LOAD_CHARACTERS: {
       return {...state, characterList: action.payload};
+    }
+    case LOAD_CHARACTER: {
+      return {...state, character: action.payload};
     }
     default:
       return state;

@@ -1,9 +1,9 @@
 import {combineReducers, createStore} from 'redux';
-import {characterReducer} from './reducers/characterReducer';
+import {charactersReducer} from './reducers/charactersReducer';
 import {loadingReducer} from './reducers/loadingReducer';
 
 const rootReducer = combineReducers({
-  characterReducer,
+  characterReducer: charactersReducer,
   loadingReducer,
 });
 
