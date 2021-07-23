@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, Image, ActivityIndicator} from 'react-native';
 import {testIDs} from '../test-ids';
 import {api} from '../api/api';
-import {useDispatch, useSelector} from 'react-redux';
 import {IS_LOADING} from '../actions/types';
+import {useAppDispatch, useAppSelector} from '../hooks/hooks';
 import {Character} from '../reducers/characterReducer';
 
 export interface CharacterInfoProps {
@@ -12,18 +12,27 @@ export interface CharacterInfoProps {
 }
 
 export const CharacterInfo = (props: CharacterInfoProps) => {
-  const [character, setCharacter] = useState<Character>({});
+  const [character, setCharacter] = useState<Character>({
+    char_id: '',
+    name: '',
+    status: '',
+    img: '',
+    portrayed: '',
+    birthday: '',
+    nickname: '',
+  });
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch({type: IS_LOADING, payload: true});
     api
       .fetchCharacter(props.characterID)
       .then(data => setCharacter(data[0]))
       .then(() => dispatch({type: IS_LOADING, payload: false}));
-  }, [props.characterID]);
-  console.log(character);
-  const loading = useSelector(state => state.loadingReducer.loading);
+  }, [dispatch, props.characterID]);
+
+  const loading = useAppSelector(state => state.loadingReducer.loading);
 
   if (!loading) {
     return (

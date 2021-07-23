@@ -15,6 +15,8 @@ import {LOAD_ITEMS} from '../actions/types';
 import {Character} from '../reducers/characterReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
+import {RootState} from '../store';
+import {useAppDispatch, useAppSelector} from '../hooks/hooks';
 
 export interface CharacterListProps {
   componentId: string;
@@ -32,22 +34,21 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
     [props.componentId],
   );
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const characters = useSelector(state => state.characterReducer.characterList);
+  const characters = useAppSelector(
+    state => state.characterReducer.characterList,
+  );
 
   useEffect(() => {
     api
       .fetchAllChactacters()
       .then(data => dispatch({type: LOAD_ITEMS, payload: data}));
-  }, []);
-
-  console.log(characters);
+  }, [dispatch]);
 
   const renderItem = (
     characterListRenderItemInfo: ListRenderItemInfo<Character>,
   ) => {
-    console.log(characterListRenderItemInfo.item.char_id);
     return (
       <TouchableOpacity
         style={styles.listItem}
