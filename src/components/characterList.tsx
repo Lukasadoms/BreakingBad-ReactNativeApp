@@ -41,7 +41,7 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
 
   const dispatch = useDispatch();
 
-  let characters = useAppSelector(
+  const characters = useAppSelector(
     state => state.characterReducer.characterList,
   );
 
@@ -66,19 +66,22 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
   );
 });
 
-const CharacterListItem = React.memo((props: CharacterListItemProps) => {
-  const onPress = useCallback(() => props.onPress(props.item.char_id), [props]);
-  return (
-    <TouchableOpacity style={styles.listItem} onPress={onPress}>
-      <Image style={styles.image} source={{uri: props.item.img}} />
-      <Text
-        style={styles.name}
-        testID={testIDs.CHARACTER_NAME(props.item.char_id)}>
-        {props.item.name}
-      </Text>
-    </TouchableOpacity>
-  );
-});
+const CharacterListItem = React.memo(
+  ({item, onPress}: CharacterListItemProps) => {
+    const onPressed = useCallback(
+      () => onPress(item.char_id),
+      [item.char_id, onPress],
+    );
+    return (
+      <TouchableOpacity style={styles.listItem} onPress={onPressed}>
+        <Image style={styles.image} source={{uri: item.img}} />
+        <Text style={styles.name} testID={testIDs.CHARACTER_NAME(item.char_id)}>
+          {item.name}
+        </Text>
+      </TouchableOpacity>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   image: {

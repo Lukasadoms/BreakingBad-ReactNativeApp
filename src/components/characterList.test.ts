@@ -1,5 +1,5 @@
 import {characterListDriver} from './characterList.driver';
-import {MockCharacterResponse} from '../api/api';
+import {MockCharacterResponse} from '../api/apiMock';
 
 describe('Character list screen', () => {
   it('should have a character list', async () => {
@@ -9,18 +9,16 @@ describe('Character list screen', () => {
   });
 
   it('character 1 should be "Walter White"', async () => {
-    // set fetch mock
     global.setMockFetchResponse(MockCharacterResponse.character1);
     const driver = await characterListDriver();
-    const character = await driver.getCharacterName('1');
-    expect(character[0]).toEqual('Walter White');
+    const characterName = await driver.getCharacterName('1');
+    expect(characterName).toEqual('Walter White');
   });
 
   it('character 2 should be "Skyler White"', async () => {
-    // set fetch mock
     global.setMockFetchResponse(MockCharacterResponse.character2);
     const driver = await characterListDriver();
-    const character = await driver.getCharacterName('2');
-    expect(character[0]).toEqual('Skyler White');
+    const characterName = await driver.getCharacterName('2');
+    expect(characterName).toEqual('Skyler White');
   });
 });
