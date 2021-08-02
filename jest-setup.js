@@ -1,16 +1,11 @@
+let mockFetchResponse = null;
+
+global.setMockFetchResponse = response => {
+  mockFetchResponse = response;
+};
+
 global.fetch = jest.fn(() => {
   return Promise.resolve({
-    json: () =>
-      Promise.resolve([
-        {
-          char_id: '1',
-          name: 'Walter White',
-          img: 'image',
-          birthday: '1990',
-          status: 'unknown',
-          nickname: 'Heisenberg',
-          portrayed: 'dontknow',
-        },
-      ]),
+    json: () => Promise.resolve(mockFetchResponse),
   });
 });

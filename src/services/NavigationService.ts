@@ -1,7 +1,11 @@
 import {Navigation} from 'react-native-navigation';
 
 export const navigationService = {
-  navigateTo(componentId: string, screenName: string, characterID: string) {
+  navigateToCharacterInfoScreen(
+    componentId: string,
+    screenName: string,
+    characterID: string,
+  ) {
     Navigation.push(componentId, {
       component: {
         name: screenName,

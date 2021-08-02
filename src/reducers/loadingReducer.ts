@@ -1,4 +1,4 @@
-import {IS_LOADING} from '../actions/types';
+import {SET_IS_LOADING} from '../actions/types';
 
 export interface LoadingState {
   loading: boolean;
@@ -8,8 +8,8 @@ const initialState = {
   loading: false,
 };
 
-interface IsLoadingAction {
-  type: typeof IS_LOADING;
+export interface IsLoadingAction {
+  type: typeof SET_IS_LOADING;
   payload: boolean;
 }
 
@@ -20,7 +20,7 @@ export const loadingReducer = (
   action: Action,
 ): LoadingState => {
   switch (action.type) {
-    case IS_LOADING: {
+    case SET_IS_LOADING: {
       return {loading: action.payload};
     }
     default:

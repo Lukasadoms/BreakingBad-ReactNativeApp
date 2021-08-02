@@ -12,13 +12,16 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.14.7",
+    "react": "17.0.1",
     "react-native": "0.64.1",
     "react-native-navigation": "^7.18.0",
+    "react-native-ui-lib": "^5.28.3",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
-    "redux-component-driver": "^0.11.0"
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
+    "redux-component-driver": "^0.11.0",
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
@@ -31,10 +34,8 @@
     "jest": "^26.6.3",
     "jest-circus": "^27.0.6",
     "metro-react-native-babel-preset": "^0.64.0",
-    "react": "17.0.1",
     "react-component-driver": "^0.11.0",
     "react-test-renderer": "17.0.1",
-    "ts-jest": "^27.0.4",
     "typescript": "^3.9.10"
   },
   "resolutions": {
@@ -55,6 +56,8 @@
     ],
     "clearMocks": true,
     "coverageDirectory": "coverage",
-    "setupFilesAfterEnv": ["./jest-setup.js"]
+    "setupFilesAfterEnv": [
+      "./jest-setup.js"
+    ]
   }
 }

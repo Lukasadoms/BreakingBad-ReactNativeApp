@@ -1,28 +1,24 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet, Text, Image, ActivityIndicator} from 'react-native';
 import {testIDs} from '../test-ids';
-import {api} from '../api/api';
-import {IS_LOADING, LOAD_CHARACTER} from '../actions/types';
-import {useAppDispatch, useAppSelector} from '../hooks/hooks';
+import {useAppSelector} from '../hooks/hooks';
+import {fetchCharacterInfo, loadCharacter} from '../actions/actions';
+import {useDispatch} from 'react-redux';
 
 export interface CharacterInfoProps {
   componentId: string;
   characterID: string;
 }
 
-export const CharacterInfo = (props: CharacterInfoProps) => {
-  const dispatch = useAppDispatch();
+export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({type: IS_LOADING, payload: true});
-    api
-      .fetchCharacter(props.characterID)
-      .then(data => dispatch({type: LOAD_CHARACTER, payload: data[0]}))
-      .then(() => dispatch({type: IS_LOADING, payload: false}));
-    return function cleanup() {
-      dispatch({type: LOAD_CHARACTER, payload: undefined});
+    dispatch(fetchCharacterInfo(characterID));
+    return () => {
+      dispatch(loadCharacter(undefined));
     };
-  }, [dispatch, props.characterID]);
+  }, [dispatch, characterID]);
 
   const character = useAppSelector(state => state.characterReducer.character);
   const loading = useAppSelector(state => state.loadingReducer.loading);
@@ -47,20 +43,10 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   }
   if (loading) {
     return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#AAAAAF',
-        }}>
-        <View
-          style={{
-            padding: 13,
-            borderRadius: 13,
-          }}>
+      <View style={styles.loadingView}>
+        <View style={styles.loadingPadding}>
           <ActivityIndicator animating={true} color={'black'} size="large" />
-          <Text style={{color: 'black'}}>Loading...</Text>
+          <Text style={styles.loadingText}>Loading...</Text>
         </View>
       </View>
     );
@@ -70,6 +56,17 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
 };
 
 const styles = StyleSheet.create({
+  loadingView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#AAAAAF',
+  },
+  loadingPadding: {
+    padding: 13,
+    borderRadius: 13,
+  },
+  loadingText: {color: 'black'},
   image: {
     width: '100%',
     height: undefined,

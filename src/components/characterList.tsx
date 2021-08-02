@@ -9,21 +9,28 @@ import {
   View,
 } from 'react-native';
 import {screenIDs} from '../screen-ids';
-import {api} from '../api/api';
-import {LOAD_CHARACTERS} from '../actions/types';
 import {Character} from '../reducers/charactersReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
-import {useAppDispatch, useAppSelector} from '../hooks/hooks';
+import {useAppSelector} from '../hooks/hooks';
+import {fetchCharacters} from '../actions/actions';
+import {useDispatch} from 'react-redux';
 
 export interface CharacterListProps {
   componentId: string;
 }
 
+interface CharacterListItemProps {
+  item: Character;
+  onPress: (characterId: string) => void;
+}
+
 export const CharacterList = React.memo((props: CharacterListProps) => {
+  const extractKey = useCallback(item => item.char_id.toString(), []);
+
   const pushViewCharacterScreen = useCallback(
     (characterID: string) => {
-      navigationService.navigateTo(
+      navigationService.navigateToCharacterInfoScreen(
         props.componentId,
         screenIDs.CHARACTER_INFO,
         characterID,
@@ -32,36 +39,18 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
     [props.componentId],
   );
 
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
-  const characters = useAppSelector(
+  let characters = useAppSelector(
     state => state.characterReducer.characterList,
   );
 
   useEffect(() => {
-    api
-      .fetchAllChactacters()
-      .then(data => dispatch({type: LOAD_CHARACTERS, payload: data}));
+    dispatch(fetchCharacters());
   }, [dispatch]);
 
-  const renderItem = (
-    characterListRenderItemInfo: ListRenderItemInfo<Character>,
-  ) => {
-    return (
-      <TouchableOpacity
-        style={styles.listItem}
-        onPress={() =>
-          pushViewCharacterScreen(characterListRenderItemInfo.item.char_id)
-        }>
-        <Image
-          style={styles.image}
-          source={{uri: characterListRenderItemInfo.item.img}}
-        />
-        <Text style={styles.name} testID={testIDs.CHARACTER_NAME}>
-          {characterListRenderItemInfo.item.name}
-        </Text>
-      </TouchableOpacity>
-    );
+  const renderItem = ({item}: ListRenderItemInfo<Character>) => {
+    return <CharacterListItem onPress={pushViewCharacterScreen} item={item} />;
   };
 
   return (
@@ -69,11 +58,25 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
       <Text style={styles.text}>Character List</Text>
       <FlatList
         data={characters}
-        keyExtractor={item => item.char_id.toString()}
+        keyExtractor={extractKey}
         renderItem={renderItem}
         testID={testIDs.CHARACTER_LIST}
       />
     </View>
+  );
+});
+
+const CharacterListItem = React.memo((props: CharacterListItemProps) => {
+  const onPress = useCallback(() => props.onPress(props.item.char_id), [props]);
+  return (
+    <TouchableOpacity style={styles.listItem} onPress={onPress}>
+      <Image style={styles.image} source={{uri: props.item.img}} />
+      <Text
+        style={styles.name}
+        testID={testIDs.CHARACTER_NAME(props.item.char_id)}>
+        {props.item.name}
+      </Text>
+    </TouchableOpacity>
   );
 });
 
