@@ -1,9 +1,9 @@
-import {device} from "detox"
-import {testIDs} from "../src/test-ids";
+import {device} from 'detox';
+import {testIDs} from '../src/test-ids';
 
 describe('Example', () => {
   beforeAll(async () => {
-    await device.selectApp("default")
+    await device.selectApp('default');
     await device.launchApp();
   });
 
@@ -17,11 +17,6 @@ describe('Example', () => {
 
   it('should show character info screen after tapping character list', async () => {
     await element(by.id(testIDs.CHARACTER_LIST)).tap();
-    await expect(element(by.id(testIDs.BUTTON_TITLE))).toBeVisible();
+    await expect(element(by.id(testIDs.CHARACTER_TITLE))).toBeVisible();
   });
-  //
-  // it('should show world screen after tap', async () => {
-  //   await element(by.id('world_button')).tap();
-  //   await expect(element(by.text('World!!!'))).toBeVisible();
-  // });
 });

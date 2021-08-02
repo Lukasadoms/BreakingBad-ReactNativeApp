@@ -3,7 +3,7 @@
  */
 
 import {Navigation} from 'react-native-navigation';
-import {registerScreens} from './screens';
+import {registerScreens} from './src/screens';
 import {screenIDs} from './src/screen-ids';
 
 registerScreens();
@@ -20,6 +20,9 @@ Navigation.events().registerAppLaunchedListener(() => {
                 topBar: {
                   title: {
                     text: 'BreakingBad',
+                  },
+                  background: {
+                    color: '#ffebaa',
                   },
                 },
               },

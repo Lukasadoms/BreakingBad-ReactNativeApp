@@ -1,0 +1,3 @@
+export const LOAD_CHARACTERS = 'LOAD_CHARACTERS';
+export const LOAD_CHARACTER = 'LOAD_CHARACTER';
+export const SET_IS_LOADING = 'SET_IS_LOADING';
