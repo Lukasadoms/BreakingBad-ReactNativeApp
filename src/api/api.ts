@@ -10,4 +10,23 @@ export const api = {
     );
     return await result.json();
   },
+
+  fetchFavouriteIds: async () => {
+    const response = await fetch('http://localhost:3000/favourites');
+    return await response.json();
+  },
+
+  toggleFavourite: async (favouriteId: string) => {
+    console.log('api calls ' + favouriteId);
+    return await fetch('http://localhost:3000/favourites', {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({selectedId: favouriteId}),
+    });
+  },
 };

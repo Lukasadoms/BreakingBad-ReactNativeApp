@@ -1,4 +1,9 @@
-import {LOAD_CHARACTER, LOAD_CHARACTERS} from '../actions/types';
+import {
+  LOAD_CHARACTER,
+  LOAD_CHARACTERS,
+  LOAD_FAVOURITES,
+  TOGGLE_FAVOURITE,
+} from '../actions/types';
 
 export interface Character {
   char_id: string;
@@ -13,11 +18,13 @@ export interface Character {
 export interface CharacterState {
   characterList: Character[];
   character: Character | undefined;
+  favouriteIds: string[];
 }
 
 const initialState = {
   characterList: [],
   character: undefined,
+  favouriteIds: [],
 };
 
 interface LoadCharactersAction {
@@ -30,7 +37,21 @@ interface LoadCharacterAction {
   payload: Character | undefined;
 }
 
-type Action = LoadCharactersAction | LoadCharacterAction;
+interface ToggleFavourite {
+  type: typeof TOGGLE_FAVOURITE;
+  payload: string;
+}
+
+interface LoadFavouriteCharacters {
+  type: typeof LOAD_FAVOURITES;
+  payload: string[];
+}
+
+type Action =
+  | LoadCharactersAction
+  | LoadCharacterAction
+  | ToggleFavourite
+  | LoadFavouriteCharacters;
 
 export const charactersReducer = (
   state: CharacterState = initialState,
@@ -42,6 +63,24 @@ export const charactersReducer = (
     }
     case LOAD_CHARACTER: {
       return {...state, character: action.payload};
+    }
+    case TOGGLE_FAVOURITE: {
+      if (state.favouriteIds.includes(action.payload as string)) {
+        return {
+          ...state,
+          favouriteIds: state.favouriteIds.filter(
+            favouriteId => favouriteId !== action.payload,
+          ),
+        };
+      }
+      return {
+        ...state,
+        favouriteIds: [...state.favouriteIds, action.payload],
+      };
+    }
+    case LOAD_FAVOURITES: {
+      console.log(action.payload);
+      return {...state, favouriteIds: action.payload};
     }
     default:
       return state;

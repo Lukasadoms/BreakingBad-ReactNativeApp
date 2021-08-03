@@ -13,7 +13,7 @@ import {Character} from '../reducers/charactersReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
 import {useAppSelector} from '../hooks/hooks';
-import {fetchCharacters} from '../actions/actions';
+import {fetchCharacters, fetchFavouriteCharactersIds} from '../actions/actions';
 import {useDispatch} from 'react-redux';
 
 export interface CharacterListProps {
@@ -47,23 +47,26 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
 
   useEffect(() => {
     dispatch(fetchCharacters());
+    dispatch(fetchFavouriteCharactersIds());
   }, [dispatch]);
 
   const renderItem = ({item}: ListRenderItemInfo<Character>) => {
     return <CharacterListItem onPress={pushViewCharacterScreen} item={item} />;
   };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Character List</Text>
-      <FlatList
-        data={characters}
-        keyExtractor={extractKey}
-        renderItem={renderItem}
-        testID={testIDs.CHARACTER_LIST}
-      />
-    </View>
-  );
+  if (characters) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Character List</Text>
+        <FlatList
+          data={characters}
+          keyExtractor={extractKey}
+          renderItem={renderItem}
+          testID={testIDs.CHARACTER_LIST}
+        />
+      </View>
+    );
+  }
 });
 
 const CharacterListItem = React.memo(
@@ -72,18 +75,50 @@ const CharacterListItem = React.memo(
       () => onPress(item.char_id),
       [item.char_id, onPress],
     );
-    return (
-      <TouchableOpacity style={styles.listItem} onPress={onPressed}>
-        <Image style={styles.image} source={{uri: item.img}} />
-        <Text style={styles.name} testID={testIDs.CHARACTER_NAME(item.char_id)}>
-          {item.name}
-        </Text>
-      </TouchableOpacity>
+
+    const favouriteCharacterIds = useAppSelector(
+      state => state.characterReducer.favouriteIds,
     );
+
+    if (favouriteCharacterIds) {
+      return (
+        <TouchableOpacity style={styles.listItem} onPress={onPressed}>
+          <Image style={styles.image} source={{uri: item.img}} />
+          <Text
+            style={styles.name}
+            testID={testIDs.CHARACTER_NAME(item.char_id)}>
+            {item.name}
+          </Text>
+          <Image
+            source={require('../../assets/heart.png')}
+            style={
+              favouriteCharacterIds.includes(item.char_id)
+                ? styles.heartIconRed
+                : styles.heartIcon
+            }
+          />
+        </TouchableOpacity>
+      );
+    }
   },
 );
 
 const styles = StyleSheet.create({
+  heartIconRed: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    paddingRight: 50,
+    tintColor: 'red',
+  },
+  heartIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    paddingRight: 50,
+  },
   image: {
     width: 50,
     height: 60,
