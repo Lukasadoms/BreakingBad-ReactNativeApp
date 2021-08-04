@@ -1,4 +1,5 @@
-import {api, MockCharacterResponse} from './api';
+import {api} from './api';
+import {MockCharacterResponse} from './apiMock';
 
 describe('fetch API', () => {
   it('should fetch character', async () => {

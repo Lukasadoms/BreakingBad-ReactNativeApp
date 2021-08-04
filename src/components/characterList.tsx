@@ -13,7 +13,7 @@ import {Character} from '../reducers/charactersReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
 import {useAppSelector} from '../hooks/hooks';
-import {fetchCharacters} from '../actions/actions';
+import {fetchCharacters, fetchFavouriteCharactersIds} from '../actions/actions';
 import {useDispatch} from 'react-redux';
 
 export interface CharacterListProps {
@@ -23,6 +23,7 @@ export interface CharacterListProps {
 interface CharacterListItemProps {
   item: Character;
   onPress: (characterId: string) => void;
+  liked: boolean;
 }
 
 export const CharacterList = React.memo((props: CharacterListProps) => {
@@ -38,19 +39,29 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
     },
     [props.componentId],
   );
-
   const dispatch = useDispatch();
-
-  let characters = useAppSelector(
-    state => state.characterReducer.characterList,
-  );
 
   useEffect(() => {
     dispatch(fetchCharacters());
+    dispatch(fetchFavouriteCharactersIds());
   }, [dispatch]);
 
+  const characters = useAppSelector(
+    state => state.characterReducer.characterList,
+  );
+
+  const favouriteCharacterIds = useAppSelector(
+    state => state.characterReducer.favouriteIds,
+  );
+
   const renderItem = ({item}: ListRenderItemInfo<Character>) => {
-    return <CharacterListItem onPress={pushViewCharacterScreen} item={item} />;
+    return (
+      <CharacterListItem
+        onPress={pushViewCharacterScreen}
+        item={item}
+        liked={favouriteCharacterIds.includes(item.char_id)}
+      />
+    );
   };
 
   return (
@@ -66,21 +77,44 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
   );
 });
 
-const CharacterListItem = React.memo((props: CharacterListItemProps) => {
-  const onPress = useCallback(() => props.onPress(props.item.char_id), [props]);
-  return (
-    <TouchableOpacity style={styles.listItem} onPress={onPress}>
-      <Image style={styles.image} source={{uri: props.item.img}} />
-      <Text
-        style={styles.name}
-        testID={testIDs.CHARACTER_NAME(props.item.char_id)}>
-        {props.item.name}
-      </Text>
-    </TouchableOpacity>
-  );
-});
+const CharacterListItem = React.memo(
+  ({item, onPress, liked}: CharacterListItemProps) => {
+    const onPressed = useCallback(
+      () => onPress(item.char_id),
+      [item.char_id, onPress],
+    );
+
+    return (
+      <TouchableOpacity style={styles.listItem} onPress={onPressed}>
+        <Image style={styles.image} source={{uri: item.img}} />
+        <Text style={styles.name} testID={testIDs.CHARACTER_NAME(item.char_id)}>
+          {item.name}
+        </Text>
+        <Image
+          source={require('../../assets/heart.png')}
+          style={liked ? styles.heartIconRed : styles.heartIcon}
+        />
+      </TouchableOpacity>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
+  heartIconRed: {
+    width: 20,
+    height: 20,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    paddingLeft: 50,
+    tintColor: 'red',
+  },
+  heartIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    paddingLeft: 50,
+  },
   image: {
     width: 50,
     height: 60,

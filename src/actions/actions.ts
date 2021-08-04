@@ -1,6 +1,12 @@
 import {Dispatch} from 'redux';
 import {api} from '../api/api';
-import {SET_IS_LOADING, LOAD_CHARACTER, LOAD_CHARACTERS} from './types';
+import {
+  SET_IS_LOADING,
+  LOAD_CHARACTER,
+  LOAD_CHARACTERS,
+  TOGGLE_FAVOURITE,
+  LOAD_FAVOURITES,
+} from './types';
 import {Character} from '../reducers/charactersReducer';
 
 export const loadCharacter = (character: Character | undefined) => ({
@@ -13,16 +19,38 @@ export const loadCharacterList = (characters: Character[]) => ({
   payload: characters,
 });
 
+export const loadFavouriteCharacters = (favouriteIds: string[]) => ({
+  type: LOAD_FAVOURITES,
+  payload: favouriteIds,
+});
+
 export const showLoadingAnimation = (isLoading: boolean) => ({
   type: SET_IS_LOADING,
   payload: isLoading,
 });
 
+export const toggleFavouriteState = (selectedId: string) => ({
+  type: TOGGLE_FAVOURITE,
+  payload: selectedId,
+});
+
+export const toggleFavourite =
+  (favouriteCharacterId: string) => async (dispatch: Dispatch) => {
+    await api.toggleFavourite(favouriteCharacterId);
+    dispatch(toggleFavouriteState(favouriteCharacterId));
+  };
+
 export const fetchCharacters = () => {
   return async (dispatch: Dispatch) => {
     const characters = await api.fetchAllCharacters();
-    console.log(characters);
     dispatch(loadCharacterList(characters));
+  };
+};
+
+export const fetchFavouriteCharactersIds = () => {
+  return async (dispatch: Dispatch) => {
+    const favoriteCharacterIds = await api.fetchFavouriteIds();
+    dispatch(loadFavouriteCharacters(favoriteCharacterIds));
   };
 };
 

@@ -1,8 +1,19 @@
-import React, {useEffect} from 'react';
-import {View, StyleSheet, Text, Image, ActivityIndicator} from 'react-native';
+import React, {useCallback, useEffect} from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  ActivityIndicator,
+  Button,
+} from 'react-native';
 import {testIDs} from '../test-ids';
 import {useAppSelector} from '../hooks/hooks';
-import {fetchCharacterInfo, loadCharacter} from '../actions/actions';
+import {
+  fetchCharacterInfo,
+  loadCharacter,
+  toggleFavourite,
+} from '../actions/actions';
 import {useDispatch} from 'react-redux';
 
 export interface CharacterInfoProps {
@@ -19,6 +30,14 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
       dispatch(loadCharacter(undefined));
     };
   }, [dispatch, characterID]);
+
+  const onFavouritePressed = useCallback(() => {
+    dispatch(toggleFavourite(characterID));
+  }, [dispatch, characterID]);
+
+  const isFavourite = useAppSelector(state => {
+    return state.characterReducer.favouriteIds.includes(characterID);
+  });
 
   const character = useAppSelector(state => state.characterReducer.character);
   const loading = useAppSelector(state => state.loadingReducer.loading);
@@ -38,9 +57,16 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
         <Text style={styles.text}>Nickname: {character.nickname}</Text>
         <Text style={styles.text}>Birthday: {character.birthday}</Text>
         <Text style={styles.text}>Actor: {character.portrayed}</Text>
+        <View style={styles.button}>
+          <Button
+            title={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
+            onPress={onFavouritePressed}
+          />
+        </View>
       </View>
     );
   }
+
   if (loading) {
     return (
       <View style={styles.loadingView}>
@@ -56,6 +82,13 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
 };
 
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    width: 200,
+    height: 60,
+    justifyContent: 'center',
+  },
   loadingView: {
     flex: 1,
     alignItems: 'center',
