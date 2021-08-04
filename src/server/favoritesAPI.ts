@@ -10,10 +10,6 @@ app.listen(PORT, () => {
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello world from port:' + PORT);
-});
-
 app.get('/favourites', (req, res) => {
   const favouriteIds = loadFavouriteIds();
   res.json(favouriteIds);

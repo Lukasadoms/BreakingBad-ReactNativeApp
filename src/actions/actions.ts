@@ -38,13 +38,11 @@ export const toggleFavourite =
   (favouriteCharacterId: string) => async (dispatch: Dispatch) => {
     await api.toggleFavourite(favouriteCharacterId);
     dispatch(toggleFavouriteState(favouriteCharacterId));
-    console.log('dispatchin' + favouriteCharacterId);
   };
 
 export const fetchCharacters = () => {
   return async (dispatch: Dispatch) => {
     const characters = await api.fetchAllCharacters();
-    console.log('from api characters: ' + characters);
     dispatch(loadCharacterList(characters));
   };
 };
@@ -52,7 +50,6 @@ export const fetchCharacters = () => {
 export const fetchFavouriteCharactersIds = () => {
   return async (dispatch: Dispatch) => {
     const favoriteCharacterIds = await api.fetchFavouriteIds();
-    console.log('from api: ' + favoriteCharacterIds);
     dispatch(loadFavouriteCharacters(favoriteCharacterIds));
   };
 };
