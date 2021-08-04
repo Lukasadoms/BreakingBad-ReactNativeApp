@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -31,10 +31,9 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
     };
   }, [dispatch, characterID]);
 
-  const onFavouritePressed = (selectedId: string) => {
-    dispatch(toggleFavourite(selectedId));
-    console.log('dispatched: ' + selectedId);
-  };
+  const onFavouritePressed = useCallback(() => {
+    dispatch(toggleFavourite(characterID));
+  }, [dispatch, characterID]);
 
   const isFavourite = useAppSelector(state => {
     return state.characterReducer.favouriteIds.includes(characterID);
@@ -61,12 +60,13 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
         <View style={styles.button}>
           <Button
             title={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
-            onPress={() => onFavouritePressed(character.char_id)}
+            onPress={() => onFavouritePressed()}
           />
         </View>
       </View>
     );
   }
+
   if (loading) {
     return (
       <View style={styles.loadingView}>

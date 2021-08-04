@@ -23,6 +23,7 @@ export interface CharacterListProps {
 interface CharacterListItemProps {
   item: Character;
   onPress: (characterId: string) => void;
+  liked: boolean;
 }
 
 export const CharacterList = React.memo((props: CharacterListProps) => {
@@ -38,23 +39,32 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
     },
     [props.componentId],
   );
-
   const dispatch = useDispatch();
-
-  const characters = useAppSelector(
-    state => state.characterReducer.characterList,
-  );
 
   useEffect(() => {
     dispatch(fetchCharacters());
     dispatch(fetchFavouriteCharactersIds());
   }, [dispatch]);
 
+  const characters = useAppSelector(
+    state => state.characterReducer.characterList,
+  );
+
+  const favouriteCharacterIds = useAppSelector(
+    state => state.characterReducer.favouriteIds,
+  );
+
   const renderItem = ({item}: ListRenderItemInfo<Character>) => {
-    return <CharacterListItem onPress={pushViewCharacterScreen} item={item} />;
+    return (
+      <CharacterListItem
+        onPress={pushViewCharacterScreen}
+        item={item}
+        liked={favouriteCharacterIds.includes(item.char_id)}
+      />
+    );
   };
 
-  if (characters) {
+  if (favouriteCharacterIds) {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Character List</Text>
@@ -70,36 +80,24 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
 });
 
 const CharacterListItem = React.memo(
-  ({item, onPress}: CharacterListItemProps) => {
+  ({item, onPress, liked}: CharacterListItemProps) => {
     const onPressed = useCallback(
       () => onPress(item.char_id),
       [item.char_id, onPress],
     );
 
-    const favouriteCharacterIds = useAppSelector(
-      state => state.characterReducer.favouriteIds,
+    return (
+      <TouchableOpacity style={styles.listItem} onPress={onPressed}>
+        <Image style={styles.image} source={{uri: item.img}} />
+        <Text style={styles.name} testID={testIDs.CHARACTER_NAME(item.char_id)}>
+          {item.name}
+        </Text>
+        <Image
+          source={require('../../assets/heart.png')}
+          style={liked ? styles.heartIconRed : styles.heartIcon}
+        />
+      </TouchableOpacity>
     );
-
-    if (favouriteCharacterIds) {
-      return (
-        <TouchableOpacity style={styles.listItem} onPress={onPressed}>
-          <Image style={styles.image} source={{uri: item.img}} />
-          <Text
-            style={styles.name}
-            testID={testIDs.CHARACTER_NAME(item.char_id)}>
-            {item.name}
-          </Text>
-          <Image
-            source={require('../../assets/heart.png')}
-            style={
-              favouriteCharacterIds.includes(item.char_id)
-                ? styles.heartIconRed
-                : styles.heartIcon
-            }
-          />
-        </TouchableOpacity>
-      );
-    }
   },
 );
 
@@ -107,9 +105,9 @@ const styles = StyleSheet.create({
   heartIconRed: {
     width: 20,
     height: 20,
-    resizeMode: 'contain',
     alignSelf: 'center',
-    paddingRight: 50,
+    resizeMode: 'contain',
+    paddingLeft: 50,
     tintColor: 'red',
   },
   heartIcon: {
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
     height: 20,
     resizeMode: 'contain',
     alignSelf: 'center',
-    paddingRight: 50,
+    paddingLeft: 50,
   },
   image: {
     width: 50,

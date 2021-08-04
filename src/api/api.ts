@@ -17,7 +17,6 @@ export const api = {
   },
 
   toggleFavourite: async (favouriteId: string) => {
-    console.log('api calls ' + favouriteId);
     return await fetch('http://localhost:3000/favourites', {
       method: 'POST',
       mode: 'cors',

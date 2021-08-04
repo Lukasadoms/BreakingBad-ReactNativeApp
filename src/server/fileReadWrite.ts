@@ -3,7 +3,7 @@ import {existsSync, readFileSync, writeFileSync} from 'fs';
 export const readFromJSONFile = (path: string) => {
   if (!checkIfFileExists(path)) {
     createEmptyFile(path);
-    return {};
+    return [];
   }
   const jsonString = readFileSync(path, {encoding: 'utf-8'});
   return JSON.parse(jsonString);
@@ -18,5 +18,5 @@ const checkIfFileExists = (path: string) => {
 };
 
 const createEmptyFile = (path: string) => {
-  writeFileSync(path, JSON.stringify({favourites: []}));
+  writeFileSync(path, JSON.stringify([]));
 };
