@@ -11,14 +11,14 @@ describe('Character list screen', () => {
   it('character 1 should be "Walter White"', async () => {
     global.setMockFetchResponse(MockCharacterResponse.character1);
     const driver = await characterListDriver();
-    const characterName = await driver.getCharacterName('1');
+    const characterName = driver.getCharacterName('1');
     expect(characterName).toEqual('Walter White');
   });
 
   it('character 2 should be "Skyler White"', async () => {
     global.setMockFetchResponse(MockCharacterResponse.character2);
     const driver = await characterListDriver();
-    const characterName = await driver.getCharacterName('2');
+    const characterName = driver.getCharacterName('2');
     expect(characterName).toEqual('Skyler White');
   });
 });

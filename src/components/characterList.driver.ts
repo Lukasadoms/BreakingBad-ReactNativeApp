@@ -6,10 +6,10 @@ import {CharacterList} from './characterList';
 
 export const characterListDriver = () =>
   componentDriver(withStore(CharacterList, store), {
-    async getCharacterList() {
+    getCharacterList() {
       return this.getByID(testIDs.CHARACTER_LIST);
     },
-    async getCharacterName(characterID: string) {
+    getCharacterName(characterID: string) {
       const character = this.filterByID(testIDs.CHARACTER_NAME(characterID));
       return getTextNodes(character).join();
     },

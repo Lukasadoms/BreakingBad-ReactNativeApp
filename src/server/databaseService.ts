@@ -15,7 +15,6 @@ export const toggleFavourite = (selectedId: string) => {
     );
     writeToJSONFile(PATH_TO_FAVOURITES_FILE, filteredFavouriteIds);
   } else {
-    data.push(selectedId);
-    writeToJSONFile(PATH_TO_FAVOURITES_FILE, data);
+    writeToJSONFile(PATH_TO_FAVOURITES_FILE, [...data, selectedId]);
   }
 };

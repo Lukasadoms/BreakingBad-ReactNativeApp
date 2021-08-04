@@ -60,7 +60,7 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
         <View style={styles.button}>
           <Button
             title={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
-            onPress={() => onFavouritePressed()}
+            onPress={onFavouritePressed}
           />
         </View>
       </View>

@@ -64,19 +64,17 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
     );
   };
 
-  if (favouriteCharacterIds) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Character List</Text>
-        <FlatList
-          data={characters}
-          keyExtractor={extractKey}
-          renderItem={renderItem}
-          testID={testIDs.CHARACTER_LIST}
-        />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Character List</Text>
+      <FlatList
+        data={characters}
+        keyExtractor={extractKey}
+        renderItem={renderItem}
+        testID={testIDs.CHARACTER_LIST}
+      />
+    </View>
+  );
 });
 
 const CharacterListItem = React.memo(

@@ -13,7 +13,6 @@ export interface Character {
   status: string;
   nickname: string;
   portrayed: string;
-  liked: boolean;
 }
 
 export interface CharacterState {
@@ -80,7 +79,6 @@ export const charactersReducer = (
       };
     }
     case LOAD_FAVOURITES: {
-      console.log('payload: ' + action.payload);
       return {...state, favouriteIds: action.payload};
     }
     default:
