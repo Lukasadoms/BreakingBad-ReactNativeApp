@@ -1,12 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  ActivityIndicator,
-  Button,
-} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Image, Text, View, Button, LoaderScreen} from 'react-native-ui-lib';
 import {testIDs} from '../test-ids';
 import {useAppSelector} from '../hooks/hooks';
 import {
@@ -44,8 +38,13 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
 
   if (character) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text} testID={testIDs.CHARACTER_TITLE}>
+      <View flex>
+        <Text
+          text50L
+          center
+          marginB-10
+          marginT-10
+          testID={testIDs.CHARACTER_TITLE}>
           {character.name}
         </Text>
         <Image
@@ -53,14 +52,27 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
           source={{uri: character.img}}
           testID={testIDs.CHARACTER_IMAGE}
         />
-        <Text style={styles.text}>Status: {character.status}</Text>
-        <Text style={styles.text}>Nickname: {character.nickname}</Text>
-        <Text style={styles.text}>Birthday: {character.birthday}</Text>
-        <Text style={styles.text}>Actor: {character.portrayed}</Text>
-        <View style={styles.button}>
+        <Text text40L center marginT-10>
+          Status: {character.status}
+        </Text>
+        <Text text40L center marginT-10>
+          Nickname: {character.nickname}
+        </Text>
+        <Text text40L center marginT-10>
+          Birthday: {character.birthday}
+        </Text>
+        <Text text40L center marginT-10>
+          Actor: {character.portrayed}
+        </Text>
+        <View marginT-10>
           <Button
-            title={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
+            label={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
             onPress={onFavouritePressed}
+            bg-dark70
+            size={Button.sizes.large}
+            labelStyle={{color: 'black'}}
+            style={styles.button}
+            testID={testIDs.FAVOURITE_BUTTON}
           />
         </View>
       </View>
@@ -68,14 +80,7 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
   }
 
   if (loading) {
-    return (
-      <View style={styles.loadingView}>
-        <View style={styles.loadingPadding}>
-          <ActivityIndicator animating={true} color={'black'} size="large" />
-          <Text style={styles.loadingText}>Loading...</Text>
-        </View>
-      </View>
-    );
+    return <LoaderScreen message="Loading..." />;
   } else {
     return null;
   }
@@ -83,39 +88,15 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'white',
-    alignSelf: 'center',
-    width: 200,
+    width: 250,
     height: 60,
-    justifyContent: 'center',
+    alignSelf: 'center',
   },
-  loadingView: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#AAAAAF',
-  },
-  loadingPadding: {
-    padding: 13,
-    borderRadius: 13,
-  },
-  loadingText: {color: 'black'},
   image: {
     width: '100%',
     height: undefined,
     aspectRatio: 1,
     alignSelf: 'center',
     resizeMode: 'contain',
-  },
-  container: {
-    flex: 1,
-    padding: 10,
-    alignItems: 'flex-start',
-    backgroundColor: '#AAAAAF',
-  },
-  text: {
-    fontSize: 28,
-    alignSelf: 'flex-start',
-    margin: 10,
   },
 });

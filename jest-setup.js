@@ -9,3 +9,8 @@ global.fetch = jest.fn(url => {
     json: () => Promise.resolve(mockFetchResponses[url]),
   });
 });
+
+jest.mock('react-native-reanimated', () =>
+  require('react-native-reanimated/mock'),
+);
+jest.mock('react-native-gesture-handler', () => {});

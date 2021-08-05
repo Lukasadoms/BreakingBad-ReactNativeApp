@@ -25,7 +25,6 @@ export const characterListDriver = () =>
     },
     getCharacterNameList() {
       const nodes = this.filterByID(testIDs.CHARACTER_ITEM);
-      console.log(nodes, 'nodes');
       return nodes.map(character => getTextNodes(character).join());
     },
     withSearchResponse(response: Character[]) {

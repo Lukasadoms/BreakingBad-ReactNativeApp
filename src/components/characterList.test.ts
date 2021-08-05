@@ -9,30 +9,24 @@ describe('Character list screen', () => {
   });
 
   it('character 1 should be "Walter White"', async () => {
-    global.setMockFetchResponse(
-      'https://www.breakingbadapi.com/api/characters',
-      MockCharacterResponse.character1,
-    );
-    global.setMockFetchResponse('http://localhost:3000/favourites', []);
-    const driver = await characterListDriver().renderAsync();
+    const driver = await characterListDriver()
+      .withListResponse(MockCharacterResponse.character1)
+      .withFavoritesResponse()
+      .renderAsync();
     const characterName = driver.getCharacterName('1');
     expect(characterName).toEqual('Walter White');
   });
 
   it('character 2 should be "Skyler White"', async () => {
-    global.setMockFetchResponse(
-      'https://www.breakingbadapi.com/api/characters',
-      MockCharacterResponse.character2,
-    );
-    global.setMockFetchResponse('http://localhost:3000/favourites', []);
-    const driver = await characterListDriver().renderAsync();
-    // driver.withFavoritesResponse();
-    // driver.withListResponse(MockCharacterResponse.character2);
+    const driver = await characterListDriver()
+      .withListResponse(MockCharacterResponse.character2)
+      .withFavoritesResponse()
+      .renderAsync();
     const characterName = driver.getCharacterName('2');
     expect(characterName).toEqual('Skyler White');
   });
 
-  it('SHould have a search text field', async () => {
+  it('Should have a search text field', async () => {
     const driver = await characterListDriver();
     expect(driver.getSearchField()).toBeDefined();
   });

@@ -42,15 +42,16 @@ export const toggleFavourite =
 
 export const fetchCharacters = () => {
   return async (dispatch: Dispatch) => {
+    dispatch(showLoadingAnimation(true));
     const characters = await api.fetchAllCharacters();
     dispatch(loadCharacterList(characters));
+    dispatch(showLoadingAnimation(false));
   };
 };
 
 export const searchCharacters = (searchText: string) => {
   return async (dispatch: Dispatch) => {
     const characters = await api.searchCharacters(searchText);
-    console.log(characters, 'from api');
     dispatch(loadCharacterList(characters));
   };
 };

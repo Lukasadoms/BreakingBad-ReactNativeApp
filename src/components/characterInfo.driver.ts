@@ -12,4 +12,7 @@ export const characterInfoDriver = () =>
     async getCharacterImage() {
       return this.getByID(testIDs.CHARACTER_IMAGE);
     },
+    async getAddToFavouritesButton() {
+      return this.getByID(testIDs.FAVOURITE_BUTTON);
+    },
   }).renderAsync();
