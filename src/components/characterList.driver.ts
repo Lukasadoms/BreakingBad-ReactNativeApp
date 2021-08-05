@@ -3,6 +3,7 @@ import {withStore, getTextNodes} from 'redux-component-driver';
 import {store} from '../store';
 import {testIDs} from '../test-ids';
 import {CharacterList} from './characterList';
+import {Character} from '../reducers/charactersReducer';
 
 export const characterListDriver = () =>
   componentDriver(withStore(CharacterList, store), {
@@ -27,19 +28,22 @@ export const characterListDriver = () =>
       console.log(nodes, 'nodes');
       return nodes.map(character => getTextNodes(character).join());
     },
-    withSearchResponse(response: {}[]) {
+    withSearchResponse(response: Character[]) {
       global.setMockFetchResponse(
         'https://www.breakingbadapi.com/api/characters?name=Skyler+White',
         response,
       );
+      return this;
     },
-    withListResponse(response: {}[]) {
+    withListResponse(response: Character[]) {
       global.setMockFetchResponse(
         'https://www.breakingbadapi.com/api/characters',
         response,
       );
+      return this;
     },
     withFavoritesResponse() {
       global.setMockFetchResponse('http://localhost:3000/favourites', []);
+      return this;
     },
-  }).renderAsync();
+  });

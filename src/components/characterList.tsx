@@ -100,8 +100,6 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
   );
 });
 
-//
-
 const CharacterListItem = React.memo(
   ({item, onPress, liked}: CharacterListItemProps) => {
     const onPressed = useCallback(

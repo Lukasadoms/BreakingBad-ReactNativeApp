@@ -14,7 +14,7 @@ describe('Character list screen', () => {
       MockCharacterResponse.character1,
     );
     global.setMockFetchResponse('http://localhost:3000/favourites', []);
-    const driver = await characterListDriver();
+    const driver = await characterListDriver().renderAsync();
     const characterName = driver.getCharacterName('1');
     expect(characterName).toEqual('Walter White');
   });
@@ -25,7 +25,7 @@ describe('Character list screen', () => {
       MockCharacterResponse.character2,
     );
     global.setMockFetchResponse('http://localhost:3000/favourites', []);
-    const driver = await characterListDriver();
+    const driver = await characterListDriver().renderAsync();
     // driver.withFavoritesResponse();
     // driver.withListResponse(MockCharacterResponse.character2);
     const characterName = driver.getCharacterName('2');
@@ -38,19 +38,11 @@ describe('Character list screen', () => {
   });
 
   it('Should filter results with given text', async () => {
-    global.setMockFetchResponse('http://localhost:3000/favourites', []);
-    global.setMockFetchResponse(
-      'https://www.breakingbadapi.com/api/characters?name=Skyler+White',
-      MockCharacterResponse.character2,
-    );
-    global.setMockFetchResponse(
-      'https://www.breakingbadapi.com/api/characters',
-      MockCharacterResponse.all,
-    );
-    const driver = await characterListDriver();
-    // driver.withSearchResponse(MockCharacterResponse.character2);
-    // driver.withListResponse(MockCharacterResponse.all);
-    // driver.withFavoritesResponse();
+    const driver = await characterListDriver()
+      .withSearchResponse(MockCharacterResponse.character2)
+      .withListResponse(MockCharacterResponse.all)
+      .withFavoritesResponse()
+      .renderAsync();
     expect(driver.getCharacterNameList()).toHaveLength(2);
     driver.searchFor('Skyler White');
     await flushPromises();
@@ -59,4 +51,4 @@ describe('Character list screen', () => {
   });
 });
 
-const flushPromises = () => new Promise(resolve => setTimeout(resolve, 1000));
+const flushPromises = () => new Promise(resolve => setImmediate(resolve));
