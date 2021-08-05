@@ -7,13 +7,18 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TextInput,
 } from 'react-native';
 import {screenIDs} from '../screen-ids';
 import {Character} from '../reducers/charactersReducer';
 import {navigationService} from '../services/NavigationService';
 import {testIDs} from '../test-ids';
 import {useAppSelector} from '../hooks/hooks';
-import {fetchCharacters, fetchFavouriteCharactersIds} from '../actions/actions';
+import {
+  fetchCharacters,
+  fetchFavouriteCharactersIds,
+  searchCharacters,
+} from '../actions/actions';
 import {useDispatch} from 'react-redux';
 
 export interface CharacterListProps {
@@ -39,7 +44,17 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
     },
     [props.componentId],
   );
+
   const dispatch = useDispatch();
+
+  const onSearchTextInput = useCallback(
+    searchtext => {
+      console.log('before search', searchtext);
+      dispatch(searchCharacters(searchtext));
+      console.log('search', searchtext);
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     dispatch(fetchCharacters());
@@ -49,6 +64,7 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
   const characters = useAppSelector(
     state => state.characterReducer.characterList,
   );
+  console.log(characters, 'from characterlist');
 
   const favouriteCharacterIds = useAppSelector(
     state => state.characterReducer.favouriteIds,
@@ -68,6 +84,13 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
     <View style={styles.container}>
       <Text style={styles.text}>Character List</Text>
       <FlatList
+        ListHeaderComponent={
+          <TextInput
+            placeholder={'Search'}
+            testID={testIDs.SEARCH_FIELD}
+            onChangeText={onSearchTextInput}
+          />
+        }
         data={characters}
         keyExtractor={extractKey}
         renderItem={renderItem}
@@ -77,6 +100,8 @@ export const CharacterList = React.memo((props: CharacterListProps) => {
   );
 });
 
+//
+
 const CharacterListItem = React.memo(
   ({item, onPress, liked}: CharacterListItemProps) => {
     const onPressed = useCallback(
@@ -85,7 +110,10 @@ const CharacterListItem = React.memo(
     );
 
     return (
-      <TouchableOpacity style={styles.listItem} onPress={onPressed}>
+      <TouchableOpacity
+        style={styles.listItem}
+        onPress={onPressed}
+        testID={testIDs.CHARACTER_ITEM}>
         <Image style={styles.image} source={{uri: item.img}} />
         <Text style={styles.name} testID={testIDs.CHARACTER_NAME(item.char_id)}>
           {item.name}

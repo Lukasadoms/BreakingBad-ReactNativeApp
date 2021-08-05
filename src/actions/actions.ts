@@ -47,6 +47,14 @@ export const fetchCharacters = () => {
   };
 };
 
+export const searchCharacters = (searchText: string) => {
+  return async (dispatch: Dispatch) => {
+    const characters = await api.searchCharacters(searchText);
+    console.log(characters, 'from api');
+    dispatch(loadCharacterList(characters));
+  };
+};
+
 export const fetchFavouriteCharactersIds = () => {
   return async (dispatch: Dispatch) => {
     const favoriteCharacterIds = await api.fetchFavouriteIds();

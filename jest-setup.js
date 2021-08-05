@@ -1,11 +1,11 @@
-let mockFetchResponse = null;
+let mockFetchResponses = {};
 
-global.setMockFetchResponse = response => {
-  mockFetchResponse = response;
+global.setMockFetchResponse = (url, response) => {
+  mockFetchResponses[url] = response;
 };
 
-global.fetch = jest.fn(() => {
+global.fetch = jest.fn(url => {
   return Promise.resolve({
-    json: () => Promise.resolve(mockFetchResponse),
+    json: () => Promise.resolve(mockFetchResponses[url]),
   });
 });
