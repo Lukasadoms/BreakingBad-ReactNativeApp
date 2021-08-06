@@ -2,8 +2,8 @@ import {characterListDriver} from './characterList.driver';
 import {MockCharacterResponse} from '../api/apiMock';
 
 describe('Character list screen', () => {
-  it('should have a character list', async () => {
-    const driver = await characterListDriver();
+  it('should have a character list', () => {
+    const driver = characterListDriver();
     const characters = driver.getCharacterList();
     expect(characters).toBeDefined();
   });
@@ -26,8 +26,8 @@ describe('Character list screen', () => {
     expect(characterName).toEqual('Skyler White');
   });
 
-  it('Should have a search text field', async () => {
-    const driver = await characterListDriver();
+  it('Should have a search text field', () => {
+    const driver = characterListDriver();
     expect(driver.getSearchField()).toBeDefined();
   });
 

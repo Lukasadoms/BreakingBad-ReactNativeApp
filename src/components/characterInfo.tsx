@@ -34,9 +34,9 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
   });
 
   const character = useAppSelector(state => state.characterReducer.character);
-  const loading = useAppSelector(state => state.loadingReducer.loading);
+  const doneLoading = useAppSelector(state => !state.loadingReducer.loading);
 
-  if (character) {
+  if (doneLoading && character) {
     return (
       <View flex>
         <Text
@@ -77,12 +77,8 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
         </View>
       </View>
     );
-  }
-
-  if (loading) {
-    return <LoaderScreen message="Loading..." />;
   } else {
-    return null;
+    return <LoaderScreen message="Loading..." />;
   }
 };
 
