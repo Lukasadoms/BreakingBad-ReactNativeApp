@@ -1,24 +1,24 @@
 import MockTools from 'wix-one-app-engine/lib/MockTools';
-import OneAppStateBuilder from 'wix-one-app-engine/lib/OneAppStateBuilder';
 
 export default class DemoModule {
   prefix() {
     return 'demo-module';
   }
-  _mockProduction() {
-    MockTools.setLoginDataFromLocalConfigFile();
-  }
-  _mockMockState() {
-    const oneAppState = new OneAppStateBuilder()
-      .withUserId(1234)
-      .withBusiness('MetaSiteId1', 'Site1', true, 'exampleService1')
-      .withBusiness('MetaSiteId2', 'Site2', false, 'exampleService1')
-      .withBusinessService('MetaSiteId2', 'exampleService2')
-      .build();
 
-    MockTools.setLoginData({
-      oneAppState,
-    });
+  async __unsafe__initializeDemoModule() {
+    const mockMode = MockTools.getLoginMode();
+    switch (mockMode) {
+      case 'quickLogin':
+        MockTools.setLoginData({
+          loginCredentials: {
+            email: 'julie@example.com',
+            password: '123456',
+          },
+        });
+        break;
+      default:
+        console.warn('Unhandled mock mode: ' + mockMode);
+    }
   }
 
   components() {
