@@ -2,7 +2,7 @@
   "name": "breakingbadapp",
   "version": "0.0.1",
   "private": true,
-  "main": "./src/module.js",
+  "main": "src/module.ts",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start-e2e": "RN_SRC_EXT=e2e.js react-native start",
     "postinstall": "one-app-engine --setup",
-    "start": "one-app-engine --app admin --mock-mode quickLogin -ia —force-localhost",
+    "start": "one-app-engine --mock-mode quickLogin -ia —force-localhost",
     "start-ios": "one-app-engine --mock-mode quickLogin -i —force-localhost",
     "start-android": "one-app-engine -a —force-localhost"
   },
@@ -60,5 +60,23 @@
       "template-demo-module",
       "@wix/wix-one-app-member-view"
     ]
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-native)"
+    ],
+    "clearMocks": true,
+    "coverageDirectory": "coverage",
+    "setupFilesAfterEnv": [
+      "./jest-setup.js"]
   }
 }

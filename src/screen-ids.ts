@@ -1,4 +1,4 @@
 export const screenIDs = {
-  CHARACTER_LIST: 'CHARACTER_LIST',
-  CHARACTER_INFO: 'CHARACTER_INFO',
+  CHARACTER_LIST: 'one-app-breakingBadApp.characterList',
+  CHARACTER_INFO: 'one-app-breakingBadApp.characterInfo',
 };

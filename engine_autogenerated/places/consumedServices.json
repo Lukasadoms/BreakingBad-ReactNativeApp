@@ -4,6 +4,7 @@
   ],
   "wix.platform.dashboardWidgetsService": [
     "wix-one-app-platform",
+    "breakingbadapp",
     "@wix/wix-one-app-member-view"
   ],
   "quickActions": [

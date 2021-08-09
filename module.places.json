@@ -6,6 +6,9 @@
     "one-app-breakingBadApp.characterList"
   ],
   "hasTabs": false,
+  "consumedServices": [
+    "wix.platform.dashboardWidgetsService"
+  ],
   "hasDemoInit": false,
   "dbSchemes": {}
 }
