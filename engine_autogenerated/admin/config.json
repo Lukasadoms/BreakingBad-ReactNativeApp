@@ -1,0 +1,8 @@
+{
+  "modules": [
+    "wix-one-app-platform",
+    "breakingbadapp",
+    "template-demo-module",
+    "@wix/wix-one-app-member-view"
+  ]
+}

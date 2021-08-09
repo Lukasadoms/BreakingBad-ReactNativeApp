@@ -28,7 +28,6 @@ export const api = {
     return await fetch('http://localhost:3000/favourites', {
       method: 'POST',
       mode: 'cors',
-      cache: 'no-cache',
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
