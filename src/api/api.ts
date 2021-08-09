@@ -11,6 +11,14 @@ export const api = {
     return await result.json();
   },
 
+  searchCharacters: async (searchText: string) => {
+    const result = await fetch(
+      'https://www.breakingbadapi.com/api/characters?name=' +
+        searchText.replace(' ', '+'),
+    );
+    return await result.json();
+  },
+
   fetchFavouriteIds: async () => {
     const response = await fetch('http://localhost:3000/favourites');
     return await response.json();
