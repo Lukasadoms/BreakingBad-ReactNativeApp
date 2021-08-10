@@ -2,6 +2,7 @@
   "name": "breakingbadapp",
   "prefix": "one-app-breakingBadApp",
   "components": [
+    "one-app-breakingBadApp.BreakingBadAppWidget",
     "one-app-breakingBadApp.characterInfo",
     "one-app-breakingBadApp.characterList"
   ],

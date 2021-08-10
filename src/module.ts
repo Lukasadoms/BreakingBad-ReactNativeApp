@@ -43,7 +43,10 @@ export default class BreakingBadModule {
     return [
       {
         id: screenIDs.BREAKING_BAD_WIDGET,
-        generator: () => require('./components/BreakingBadAppWidget').default,
+        generator: () =>
+          require('./screens').withProvider(
+            require('./components/BreakingBadAppWidget').BreakingBadAppWidget,
+          ),
         description: 'Breaking Bad App Widget',
       },
       {

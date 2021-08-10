@@ -44,6 +44,7 @@ export const fetchCharacters = () => {
   return async (dispatch: Dispatch) => {
     dispatch(showLoadingAnimation(true));
     const characters = await api.fetchAllCharacters();
+    console.log(characters, 'from actions');
     dispatch(loadCharacterList(characters));
     dispatch(showLoadingAnimation(false));
   };
