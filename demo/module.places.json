@@ -1,0 +1,7 @@
+{
+  "name": "template-demo-module",
+  "prefix": "demo-module",
+  "hasTabs": false,
+  "hasDemoInit": true,
+  "dbSchemes": {}
+}

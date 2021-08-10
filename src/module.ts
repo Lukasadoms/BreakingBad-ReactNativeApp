@@ -4,6 +4,8 @@
 
 // NOTICE - no imports in this file! Any external code is required on demand.
 
+import {screenIDs} from './screen-ids';
+
 const widgets = [
   {
     id: 'one-app-breakingBadApp.character-list-widget',
@@ -40,22 +42,22 @@ export default class BreakingBadModule {
   components() {
     return [
       {
-        id: 'one-app-breakingBadApp.BreakingBadAppWidget',
+        id: screenIDs.BREAKING_BAD_WIDGET,
         generator: () => require('./components/BreakingBadAppWidget').default,
         description: 'Breaking Bad App Widget',
       },
       {
-        id: 'one-app-breakingBadApp.characterInfo',
+        id: screenIDs.CHARACTER_INFO,
         generator: () =>
           require('./screens').withProvider(
-            require('./components/characterInfo').default,
+            require('./components/characterInfo').CharacterInfo,
           ),
       },
       {
-        id: 'one-app-breakingBadApp.characterList',
+        id: screenIDs.CHARACTER_LIST,
         generator: () =>
           require('./screens').withProvider(
-            require('./components/characterList').default,
+            require('./components/characterList').CharacterList,
           ),
         description: 'Screen to show as root',
       },
