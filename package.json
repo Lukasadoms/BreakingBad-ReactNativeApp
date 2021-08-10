@@ -1,7 +1,6 @@
 {
   "name": "breakingbadapp",
   "version": "0.0.1",
-  "private": true,
   "main": "src/module.ts",
   "scripts": {
     "android": "react-native run-android",
@@ -13,18 +12,21 @@
     "postinstall": "one-app-engine --setup",
     "start": "one-app-engine --mock-mode quickLogin -ia —force-localhost",
     "start-ios": "one-app-engine --mock-mode quickLogin -i —force-localhost",
-    "start-android": "one-app-engine -a —force-localhost"
+    "start-android": "one-app-engine -a —force-localhost",
+    "release": "mltci release",
+    "customPublish": "mltci release"
   },
   "dependencies": {
     "@babel/preset-env": "7.14.7",
     "react-native-ui-lib": "5.28.4",
     "react-redux": "7.2.4",
     "redux": "4.1.0",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "wix-mobile-lifecycle-tools": "^2.0.0"
   },
   "devDependencies": {
-    "wix-one-app-engine": "ga",
-    "wix-one-app-platform": "ga",
+    "@wix/wix-one-app-engine": "ga",
+    "@wix/wix-one-app-platform": "ga",
     "@wix/wix-one-app-member-view": "ga",
     "@wix/wix-react-native-ui-lib": "ga",
     "@babel/core": "^7.12.9",
@@ -78,5 +80,8 @@
     "coverageDirectory": "coverage",
     "setupFilesAfterEnv": [
       "./jest-setup.js"]
+  },
+  "publishConfig": {
+    "registry": "http://npm.dev.wixpress.com/"
   }
 }

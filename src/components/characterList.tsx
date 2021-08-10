@@ -19,7 +19,6 @@ import {
   searchCharacters,
 } from '../actions/actions';
 import {useDispatch} from 'react-redux';
-import CharacterInfo from './characterInfo';
 
 export interface CharacterListProps {
   componentId: string;
@@ -162,5 +161,3 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 });
-
-export default CharacterList;

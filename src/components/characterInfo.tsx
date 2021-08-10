@@ -70,7 +70,7 @@ export const CharacterInfo = ({characterID}: CharacterInfoProps) => {
             onPress={onFavouritePressed}
             bg-dark70
             size={Button.sizes.large}
-            labelStyle={{color: 'black'}}
+            labelStyle={styles.label}
             style={styles.button}
             testID={testIDs.FAVOURITE_BUTTON}
           />
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     resizeMode: 'contain',
   },
+  label: {
+    color: 'black',
+  },
 });
-
-export default CharacterInfo;
